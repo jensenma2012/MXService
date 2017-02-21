@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="LOG_HOME">${sys:catalina.home}/logs/mxService</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout charset="UTF-8" pattern="%d{dd-MMM-yyyy HH:mm:ss.SSS} %level [%t] %logger - %msg%n" />
+		</Console>
+		<RollingFile name="file" fileName="${LOG_HOME}/service.log" filePattern="${LOG_HOME}/service-%d{yyyy-MM-dd}-%i.log">
+			<Filters>
+				<ThresholdFilter level="INFO" />
+			</Filters>
+			<PatternLayout charset="UTF-8" pattern="%d{dd-MMM-yyyy HH:mm:ss.SSS} %level [%t] %logger - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="file" />
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

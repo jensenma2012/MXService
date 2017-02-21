@@ -1,0 +1,36 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: url("../img/maintainence_bg.jpg") repeat-x #d2d1d1;
+}
+
+.main {
+	color: #575757;
+	height: 450px;
+	margin: 0 auto;
+	padding-top: 250px;
+	width: 550px;
+}
+
+.main_l {
+	float: left;
+}
+
+.main_r {
+	float: left;
+	margin-left: 40px;
+}
+
+.main404 {
+	margin-top: 20px;
+}
+
+.main_r .title {
+	font-weight: bold;
+}
+
+.main_r .info {
+	font-size: 12px;
+	line-height: 30px;
+	margin-top: 20px;
+}

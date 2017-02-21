@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoma.mybatis.mapper.ConfigMapper">
+	<resultMap id="ConfigResult" type="Config">
+		<id property="id" column="id" />
+		<result property="key" column="key" />
+		<result property="value" column="value" />
+		<result property="description" column="description" />
+		<result property="createDate" column="createDate" />
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Config">
+		insert into config
+		(key, value, description, createDate)
+		values
+		(#{key}, #{value}, #{description}, now())
+	</insert>
+
+	<update id="update" parameterType="Config">
+		update config
+		<set>
+			key = #{key},
+			value = #{value},
+			description = #{description}
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete">
+		delete from config
+		where id in
+		<foreach collection="array" item="ids" open="(" separator="," close=")">
+			#{ids}
+		</foreach>
+	</delete>
+
+	<select id="queryAll" resultType="Config">
+		select
+		*
+		from config
+	</select>
+
+	<select id="queryById" parameterType="Long" resultType="Config">
+		select
+		*
+		from config
+		where id = #{id}
+	</select>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoma.mybatis.mapper.AdminMapper">
+	<resultMap id="AdminResult" type="Admin">
+		<id property="id" column="admin_id" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="isAccountNonExpired" column="is_account_non_expired" />
+		<result property="isAccountNonLocked" column="is_account_non_locked" />
+		<result property="isCredentialsNonExpired" column="is_credentials_non_expired" />
+		<result property="isEnabled" column="is_account_enabled" />
+		<result property="createDate" column="admin_createDate" />
+
+		<collection property="roles" ofType="Role">
+			<id property="id" column="role_id" />
+			<result property="name" column="name" />
+			<result property="authorityList" column="authority_list" />
+			<result property="description" column="description" />
+			<result property="createDate" column="role_createDate" />
+		</collection>
+	</resultMap>
+
+	<select id="queryByUsername" parameterType="String" resultMap="AdminResult">
+		select
+		admin.id as admin_id,
+		admin.username as username,
+		admin.password as password,
+		admin.is_account_non_expired as is_account_non_expired,
+		admin.is_account_non_locked as is_account_non_locked,
+		admin.is_credentials_non_expired as is_credentials_non_expired,
+		admin.is_account_enabled as is_account_enabled,
+		admin.createDate as admin_createDate,
+		role.id as role_id,
+		role.name as name,
+		role.authority_list as authority_list,
+		role.description as description,
+		role.createDate as createDate
+		from admin_role
+		left outer join admin on admin_id=admin.id
+		left outer join role on role_id=role.id
+		where username = #{username}
+	</select>
+
+</mapper>

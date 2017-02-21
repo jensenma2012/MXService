@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<security:http pattern="/backdoor" security="none" />
+
+	<security:http pattern="/backdoor/captcha**" security="none" />
+
+	<security:http use-expressions="false">
+		<security:access-denied-handler error-page="/backdoor/access_denied" />
+		<security:csrf disabled="true" />
+
+		<security:form-login login-page="/backdoor" login-processing-url="/backdoor/login" authentication-failure-url="/backdoor"
+			default-target-url="/backdoor/main" always-use-default-target="true" />
+		<security:logout invalidate-session="true" logout-success-url="/backdoor" logout-url="/backdoor/logout" />
+
+		<security:intercept-url pattern="/backdoor/**" access="ROLE_BASE" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="adminDetailsService">
+			<security:password-encoder ref="passwordEncoder">
+				<security:salt-source system-wide="admin" />
+			</security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="adminDetailsService" class="com.xiaoma.service.impl.AdminDetailsServiceImpl" />
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg value="256" />
+	</bean>
+
+	<bean id="imageCaptchaService" class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService">
+		<property name="captchaEngine">
+			<bean class="com.xiaoma.captcha.CaptchaEngine" />
+		</property>
+		<property name="minGuarantedStorageDelayInSeconds" value="3600" />
+	</bean>
+
+	<bean id="captchaService" class="com.xiaoma.service.impl.CaptchaServiceImpl" />
+
+</beans>
