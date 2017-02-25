@@ -25,19 +25,19 @@
 			<tr>
 				<th><span class="requiredField">*</span>配置key:</th>
 				<td>
-					<input type="text" name="key" class="text" value="${config.key}" maxlength="32" />
+					<input type="text" name="key" class="text" value="${config.key}" maxlength="64" />
 				</td>
 			</tr>
 			<tr>
 				<th><span class="requiredField">*</span>配置value:</th>
 				<td>
-					<input type="text" name="value" class="text" value="${config.value}" maxlength="32" />
+					<textarea name="value" class="textarea" maxlength="255">${config.value}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>配置描述:</th>
 				<td>
-					<input type="text" name="description" class="text" value="${config.description}" maxlength="64" />
+					<textarea name="description" class="textarea" maxlength="255">${config.description}</textarea>
 				</td>
 			</tr>
 			<tr>

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.service.ConfigService;
-import com.xiaoma.util.Constants;
 import com.xiaoma.util.JsonUtil;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
@@ -28,7 +27,7 @@ public class TulingHandler implements WeChatHandler {
         response.setToUserName(toUserName);
         response.setFromUserName(fromUserName);
         response.setMsgType(WeChatResponseType.TEXT);
-        response.setContent(Constants.TULING_SERVICE_WELCOME_MESSAGE);
+        response.setContent(configService.getValue("TULING_WELCOME_MESSAGE"));
         return response;
     }
 

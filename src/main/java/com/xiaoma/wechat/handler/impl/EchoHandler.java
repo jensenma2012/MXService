@@ -1,14 +1,19 @@
 package com.xiaoma.wechat.handler.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.response.WeChatResponse;
-import com.xiaoma.util.Constants;
+import com.xiaoma.service.ConfigService;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
 @Service
 public class EchoHandler implements WeChatHandler {
+
+    @Resource
+    private ConfigService configService;
 
     @Override
     public WeChatResponse getWelcomeMessage(String toUserName, String fromUserName) {
@@ -16,7 +21,7 @@ public class EchoHandler implements WeChatHandler {
         response.setToUserName(toUserName);
         response.setFromUserName(fromUserName);
         response.setMsgType(WeChatResponseType.TEXT);
-        response.setContent(Constants.ECHO_SERVICE_WELCOME_MESSAGE);
+        response.setContent(configService.getValue("ECHO_WELCOME_MESSAGE"));
         return response;
     }
 

@@ -50,7 +50,7 @@
 	            <div class="link"></div>
 	            <div class="link">
 	                <strong><@security.authentication property="principal.username" /></strong> 您好!
-	                <a href="admin/modify" target="iframe">[账号设置]</a>
+	                <a href="admin/modify" target="iframe">[重置密码]</a>
 	                <a href="logout" target="_top">[注销]</a>
 	            </div>
 	        </th>

@@ -16,8 +16,8 @@ import com.xiaoma.entity.request.WeChatMessage;
 import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.mybatis.mapper.WeChatHistoryMapper;
 import com.xiaoma.mybatis.mapper.WeChatUserMapper;
+import com.xiaoma.service.ConfigService;
 import com.xiaoma.service.WeChatService;
-import com.xiaoma.util.Constants;
 import com.xiaoma.wechat.handler.WeChatHandler;
 import com.xiaoma.wechat.handler.impl.EchoHandler;
 import com.xiaoma.wechat.handler.impl.MusicHandler;
@@ -30,6 +30,9 @@ public class WeChatServiceImpl implements WeChatService {
     private static final Logger LOGGER = LogManager.getLogger(WeChatServiceImpl.class);
 
     private Map<String, WeChatHandler> handlerMap = new HashMap<String, WeChatHandler>();
+
+    @Resource
+    private ConfigService configService;
 
     @Resource
     private WeChatUserMapper wechatUserMapper;
@@ -167,7 +170,7 @@ public class WeChatServiceImpl implements WeChatService {
         response.setToUserName(toUserName);
         response.setFromUserName(fromUserName);
         response.setMsgType(WeChatResponseType.TEXT);
-        response.setContent(Constants.WELCOME_MESSAGE);
+        response.setContent(configService.getValue("MAIN_WELCOME_MESSAGE"));
         return response;
     }
 

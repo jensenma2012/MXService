@@ -15,7 +15,6 @@ import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.entity.shared.MusicLibrary;
 import com.xiaoma.service.ConfigService;
 import com.xiaoma.service.MusicService;
-import com.xiaoma.util.Constants;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
 @Service
@@ -38,7 +37,7 @@ public class MusicHandler implements WeChatHandler {
         response.setToUserName(toUserName);
         response.setFromUserName(fromUserName);
         response.setMsgType(WeChatResponseType.TEXT);
-        response.setContent(Constants.MUSIC_SERVICE_WELCOME_MESSAGE + library.getMenu());
+        response.setContent(configService.getValue("MUSIC_WELCOME_MESSAGE") + library.getMenu());
         return response;
     }
 

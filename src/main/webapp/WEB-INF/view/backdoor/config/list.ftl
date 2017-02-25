@@ -72,9 +72,6 @@
 					<span>配置key</span>
 				</th>
 				<th>
-					<span>配置value</span>
-				</th>
-				<th>
 					<span>配置描述</span>
 				</th>
 				<th>
@@ -93,9 +90,6 @@
 				</td>
 				<td>
 					${list.key}
-				</td>
-				<td>
-					${list.value}
 				</td>
 				<td>
 					${list.description}
