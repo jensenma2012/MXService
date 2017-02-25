@@ -52,7 +52,7 @@ public class MainController {
             } else {
                 message = "出现未知错误,无法登录!";
             }
-            model.addAttribute("errmsg", message);
+            model.addAttribute("message", message);
             session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
         }
 

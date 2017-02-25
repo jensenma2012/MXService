@@ -25,7 +25,7 @@ body {
 	font: 12px tahoma, Arial, Verdana, sans-serif;
 	color: #666666;
 	background-color: #ffffff;
-	_background-image: url(about: blank);
+	_background-image: url(about:blank);
 	_background-attachment: fixed;
 }
 
@@ -64,6 +64,10 @@ textarea {
 	resize: none;
 }
 
+select {
+	height: 100%;
+	color: #666666;
+}
 /* ---------- Base ---------- */
 
 .black {
@@ -121,7 +125,7 @@ textarea {
 	-moz-opacity: 0.30;
 	opacity: 0.30;
 	zoom: 1;
-	background: url(../images/dialog_overlay.png);
+	background: url("../img/dialog_overlay.png");
 }
 
 /* ---------- Form ---------- */
@@ -258,7 +262,7 @@ a.button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: 1px solid #b7c8d9;
-	background: url(../images/common.gif) 0px 0px repeat-x;
+	background: url("../img/common.gif") 0px 0px repeat-x;
 }
 
 a.button:hover {
@@ -286,7 +290,7 @@ a.button .arrow {
 	top: 12px;
 	right: 4px;
 	overflow: hidden;
-	background: url(../images/common.gif) 0px -180px no-repeat;
+	background: url("../img/common.gif") 0px -180px no-repeat;
 }
 
 a.iconButton {
@@ -306,27 +310,7 @@ a.iconButton {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: 1px solid #b7c8d9;
-	background: url(../images/common.gif) 0px 0px repeat-x;
-}
-
-a.button {
-	height: 26px;
-	line-height: 26px;
-	display: inline-block;
-	display: -moz-inline-stack;
-	float: left;
-	position: relative;
-	padding: 0px 15px 0px 15px;
-	margin-right: 10px;
-	color: #444444;
-	text-shadow: 1px 1px #ffffff;
-	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-	outline: none;
-	blr: expression(this.hideFocus = true);
-	border: 1px solid #b7c8d9;
-	background: url(../images/common.gif) 0px 0px repeat-x;
+	background: url("../img/common.gif") 0px 0px repeat-x;
 }
 
 a.iconButton:hover {
@@ -353,7 +337,7 @@ a.iconButton .addIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) 0px -150px no-repeat;
+	background: url("../img/common.gif") 0px -150px no-repeat;
 }
 
 a.iconButton .editIcon {
@@ -362,7 +346,7 @@ a.iconButton .editIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -20px -150px no-repeat;
+	background: url("../img/common.gif") -20px -150px no-repeat;
 }
 
 a.iconButton .deleteIcon {
@@ -371,7 +355,7 @@ a.iconButton .deleteIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -40px -150px no-repeat;
+	background: url("../img/common.gif") -40px -150px no-repeat;
 }
 
 a.iconButton .clearIcon {
@@ -380,7 +364,7 @@ a.iconButton .clearIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -60px -150px no-repeat;
+	background: url("../img/common.gif") -60px -150px no-repeat;
 }
 
 a.iconButton .copyIcon {
@@ -389,7 +373,7 @@ a.iconButton .copyIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -80px -150px no-repeat;
+	background: url("../img/common.gif") -80px -150px no-repeat;
 }
 
 a.iconButton .moveIcon {
@@ -398,7 +382,7 @@ a.iconButton .moveIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -100px -150px no-repeat;
+	background: url("../img/common.gif") -100px -150px no-repeat;
 }
 
 a.iconButton .refreshIcon {
@@ -407,7 +391,7 @@ a.iconButton .refreshIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -120px -150px no-repeat;
+	background: url("../img/common.gif") -120px -150px no-repeat;
 }
 
 a.iconButton .addDirIcon {
@@ -416,7 +400,7 @@ a.iconButton .addDirIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -140px -150px no-repeat;
+	background: url("../img/common.gif") -140px -150px no-repeat;
 }
 
 a.iconButton .moveDirIcon {
@@ -425,7 +409,7 @@ a.iconButton .moveDirIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -160px -150px no-repeat;
+	background: url("../img/common.gif") -160px -150px no-repeat;
 }
 
 a.iconButton .upIcon {
@@ -434,7 +418,7 @@ a.iconButton .upIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -180px -150px no-repeat;
+	background: url("../img/common.gif") -180px -150px no-repeat;
 }
 
 a.iconButton .downIcon {
@@ -443,7 +427,7 @@ a.iconButton .downIcon {
 	position: absolute;
 	top: 4px;
 	left: 8px;
-	background: url(../images/common.gif) -200px -150px no-repeat;
+	background: url("../img/common.gif") -200px -150px no-repeat;
 }
 
 a.iconButton .arrow {
@@ -453,7 +437,7 @@ a.iconButton .arrow {
 	position: absolute;
 	top: 12px;
 	right: 4px;
-	background: url(../images/common.gif) 0px -180px no-repeat;
+	background: url("../img/common.gif") 0px -180px no-repeat;
 }
 
 div.buttonWrap {
@@ -481,8 +465,9 @@ div.buttonWrap .iconButton.disabled, div.buttonWrap .iconButton.disabled:hover, 
 	background: #ffffff;
 }
 
+label.button,
 input.button {
-	height: 26px;
+	height: 28px;
 	*line-height: 22px;
 	display: inline-block;
 	display: -moz-inline-stack;
@@ -498,7 +483,7 @@ input.button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: 1px solid #b7c8d9;
-	background: url(../images/common.gif) 0px 0px repeat-x;
+	background: url("../img/common.gif") 0px 0px repeat-x;
 }
 
 @-moz-document url-prefix() {
@@ -507,6 +492,7 @@ input.button {
 	}
 }
 
+label.button:hover,
 input.button:hover {
 	color: #222222;
 	-webkit-transition: box-shadow linear 0.2s;
@@ -549,6 +535,40 @@ div.menuWrap {
 	float: right;
 }
 
+.menuMore {
+	display: inline;
+	float: left;
+	padding: 4px 0px;
+}
+
+.more {
+	width: 30px;
+  	padding-right: 15px;
+  	padding-left: 5px;
+  	color: #336699;
+}
+
+.more i {
+	position: absolute;
+  	width: 12px;
+  	height: 18px;
+	background: url("../img/list.gif") right -120px no-repeat;
+}
+
+.less {
+	width: 30px;
+  	padding-right: 15px;
+  	padding-left: 5px;
+  	color: #336699;
+}
+
+.less i {
+	position: absolute;
+  	width: 12px;
+  	height: 18px;
+	background: url("../img/list.gif") right -150px no-repeat;
+}
+
 div.popupMenu {
 	width: 125px;
 	display: none;
@@ -589,13 +609,13 @@ div.popupMenu a {
 
 div.popupMenu a:hover {
 	color: #ffffff;
-	background: url(../images/common.gif) 0px -90px repeat-x;
+	background: url("../img/common.gif") 0px -90px repeat-x;
 }
 
 div.popupMenu a.current {
 	color: #2b2b2b;
 	font-weight: bold;
-	background: url(../images/common.gif) 0px -120px repeat-x;
+	background: url("../img/common.gif") 0px -120px repeat-x;
 }
 
 div.popupMenu .check a {
@@ -605,7 +625,7 @@ div.popupMenu .check a {
 div.popupMenu .check a.checked {
 	color: #2b2b2b;
 	font-weight: bold;
-	background: url(../images/common.gif) -220px -150px no-repeat;
+	background: url("../img/common.gif") -220px -150px no-repeat;
 }
 
 span.requiredField {
@@ -632,7 +652,8 @@ label.fieldError {
 
 /* ---------- Dialog ---------- */
 
-div.xxDialog {
+div.xxDialog,
+div.pushDialog {
 	display: none;
 	position: fixed;
 	_position: absolute;
@@ -648,62 +669,69 @@ div.xxDialog {
 	filter: progid:DXImageTransform.Microsoft.Shadow(color=#e5e5e5,direction=0,strength=3) progid:DXImageTransform.Microsoft.Shadow(color=#d4d4d4,direction=90,strength=3) progid:DXImageTransform.Microsoft.Shadow(color=#d4d4d4,direction=180,strength=3) progid:DXImageTransform.Microsoft.Shadow(color=#e5e5e5,direction=270,strength=3);
 	*filter: none;
 	border: 1px solid #779cb0;
-	background: url(../images/common.gif) 0px -660px repeat-x #ffffff;
+	background: url("../img/common.gif") 0px -660px repeat-x #ffffff;
 }
 
-div.xxDialog .dialogTitle {
+div.xxDialog .dialogTitle,
+div.pushDialog .dialogTitle {
 	height: 40px;
 	line-height: 40px;
 	padding-left: 10px;
 	color: #666666;
 	font-weight: bold;
-	cursor: move;
-	background: url(../images/common.gif) 0px -210px repeat-x;
+	background: url("../img/common.gif") 0px -210px repeat-x;
 }
 
-div.xxDialog .dialogClose {
+div.xxDialog .dialogClose ,
+div.pushDialog .dialogClose{
 	width: 25px;
 	height: 19px;
 	position: absolute;
 	top: 0px;
 	right: 10px;
 	cursor: pointer;
-	background: url(../images/common.gif) 0px -330px no-repeat;
+	background: url("../img/common.gif") 0px -330px no-repeat;
 }
 
-div.xxDialog .dialogClose:hover {
+div.xxDialog .dialogClose:hover,
+div.pushDialog .dialogClose:hover {
 	background-position: -30px -330px;
 }
 
-div.xxDialog .dialogwarnIcon {
+div.xxDialog .dialogwarnIcon,
+div.pushDialog .dialogwarnIcon {
 	line-height: 24px;
 	padding-left: 30px;
 	margin: 50px 0px 40px 60px;
-	background: url(../images/common.gif) -60px -360px no-repeat;
+	background: url("../img/common.gif") -60px -360px no-repeat;
 }
 
-div.xxDialog .dialogsuccessIcon {
+div.xxDialog .dialogsuccessIcon,
+div.pushDialog .dialogsuccessIcon {
 	line-height: 24px;
 	padding-left: 30px;
 	margin: 50px 0px 40px 60px;
-	background: url(../images/common.gif) -30px -390px no-repeat;
+	background: url("../img/common.gif") -30px -390px no-repeat;
 }
 
-div.xxDialog .dialogerrorIcon {
+div.xxDialog .dialogerrorIcon,
+div.pushDialog .dialogerrorIcon {
 	line-height: 24px;
 	padding-left: 30px;
 	margin: 50px 0px 40px 60px;
-	background: url(../images/common.gif) 0px -420px no-repeat;
+	background: url("../img/common.gif") 0px -420px no-repeat;
 }
 
-div.xxDialog .dialogBottom {
+div.xxDialog .dialogBottom,
+div.pushDialog .dialogBottom {
 	height: 34px;
 	padding-top: 6px;
 	text-align: center;
-	background: url(../images/common.gif) 0px -270px repeat-x #ffffff;
+	background: url("../img/common.gif") 0px -270px repeat-x #ffffff;
 }
 
-div.xxDialog .dialogIframe {
+div.xxDialog .dialogIframe,
+div.pushDialog .dialogIframe {
 	width: 2000px;
 	height: 2000px;
 	position: absolute;
@@ -740,15 +768,15 @@ div.xxMessage .messageContent {
 }
 
 div.xxMessage .messagewarnIcon {
-	background: url(../images/common.gif) -60px -360px no-repeat;
+	background: url("../img/common.gif") -60px -360px no-repeat;
 }
 
 div.xxMessage .messagesuccessIcon {
-	background: url(../images/common.gif) -30px -390px no-repeat;
+	background: url("../img/common.gif") -30px -390px no-repeat;
 }
 
 div.xxMessage .messageerrorIcon {
-	background: url(../images/common.gif) 0px -420px no-repeat;
+	background: url("../img/common.gif") 0px -420px no-repeat;
 }
 
 div.xxMessage .messageIframe {
@@ -844,7 +872,7 @@ span.loadingIcon {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(../images/loading_icon.gif) center no-repeat;
+	background: url("../img/loading_icon.gif") center no-repeat;
 }
 
 span.loadingBar {
@@ -855,7 +883,7 @@ span.loadingBar {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(../images/loading_bar.gif) center no-repeat;
+	background: url("../img/loading_bar.gif") center no-repeat;
 }
 
 /* ---------- Pagination ---------- */
@@ -892,53 +920,53 @@ div.pagination a:hover {
 div.pagination a.previousPage {
 	width: 18px;
 	padding: 0px;
-	background: url(../images/list.gif) 0px -180px no-repeat;
+	background: url("../img/list.gif") 0px -180px no-repeat;
 }
 
 div.pagination span.previousPage {
 	width: 18px;
 	cursor: default;
 	border: 1px solid #cccccc;
-	background: url(../images/list.gif) -30px -180px no-repeat;
+	background: url("../img/list.gif") -30px -180px no-repeat;
 }
 
 div.pagination a.nextPage {
 	width: 18px;
 	padding: 0px;
-	background: url(../images/list.gif) 0px -210px no-repeat;
+	background: url("../img/list.gif") 0px -210px no-repeat;
 }
 
 div.pagination span.nextPage {
 	width: 18px;
 	cursor: default;
 	border: 1px solid #cccccc;
-	background: url(../images/list.gif) -30px -210px no-repeat;
+	background: url("../img/list.gif") -30px -210px no-repeat;
 }
 
 div.pagination a.firstPage {
 	width: 18px;
 	padding: 0px;
-	background: url(../images/list.gif) -60px -180px no-repeat;
+	background: url("../img/list.gif") -60px -180px no-repeat;
 }
 
 div.pagination span.firstPage {
 	width: 18px;
 	cursor: default;
 	border: 1px solid #cccccc;
-	background: url(../images/list.gif) -90px -180px no-repeat;
+	background: url("../img/list.gif") -90px -180px no-repeat;
 }
 
 div.pagination a.lastPage {
 	width: 18px;
 	padding: 0px;
-	background: url(../images/list.gif) -60px -210px no-repeat;
+	background: url("../img/list.gif") -60px -210px no-repeat;
 }
 
 div.pagination span.lastPage {
 	width: 18px;
 	cursor: default;
 	border: 1px solid #cccccc;
-	background: url(../images/list.gif) -90px -210px no-repeat;
+	background: url("../img/list.gif") -90px -210px no-repeat;
 }
 
 div.pagination .currentPage {
@@ -963,7 +991,7 @@ div.pagination .pageSkip {
 }
 
 div.pagination .pageSkip input {
-	width: 30px;
+	width: 18px;
 	height: 18px;
 	line-height: 18px;
 	padding: 0px;
@@ -985,7 +1013,7 @@ div.pagination .pageSkip button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: none;
-	background: url(../images/list.gif) -120px -210px no-repeat;
+	background: url("../img/list.gif") -120px -210px no-repeat;
 }
 
 /* ---------- Admin ---------- */
@@ -1003,12 +1031,8 @@ div.path span {
 	color: #999999;
 }
 
-#pageTotal{
-	color:blue;
-	font-weight: bold;
-}
-
 div.bar {
+	height: 28px;
 	padding: 4px;
 	overflow: hidden;
 }
@@ -1021,7 +1045,7 @@ div.bar .search {
 	padding: 2px 0px;
 	border: 1px solid;
 	border-color: #bfbfbf #d7d7d7 #d7d7d7 #bfbfbf;
-	background: url(../images/list.gif) 0px 0px no-repeat;
+	background: url("../img/list.gif") 0px 0px no-repeat;
 }
 
 div.bar .search .arrow {
@@ -1029,7 +1053,7 @@ div.bar .search .arrow {
 	height: 22px;
 	position: absolute;
 	cursor: pointer;
-	background: url(../images/list.gif) 0px -30px no-repeat;
+	background: url("../img/list.gif") 0px -30px no-repeat;
 }
 
 div.bar .search input {
@@ -1055,14 +1079,14 @@ div.bar .search button {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: none;
-	background: url(../images/list.gif) -30px -30px no-repeat;
+	background: url("../img/list.gif") -30px -30px no-repeat;
 }
 
 ul.tab {
 	height: 30px;
 	padding-left: 160px;
 	margin: 10px 0px 5px 0px;
-	background: url(../images/input.gif) 0px 0px repeat-x;
+	background: url("../img/input.gif") 0px 0px repeat-x;
 }
 
 ul.tab li {
@@ -1080,7 +1104,7 @@ ul.tab input {
 	outline: none;
 	blr: expression(this.hideFocus = true);
 	border: none;
-	background: url(../images/input.gif) 0px -30px no-repeat;
+	background: url("../img/input.gif") 0px -30px no-repeat;
 }
 
 ul.tab input:hover {
@@ -1090,7 +1114,7 @@ ul.tab input:hover {
 ul.tab input.current {
 	color: #2b2b2b;
 	font-weight: bold;
-	background: url(../images/input.gif) -120px -30px no-repeat;
+	background: url("../img/input.gif") -120px -30px no-repeat;
 }
 
 span.tips {
@@ -1123,7 +1147,7 @@ table.list th {
 	border-top: solid 1px #d8deea;
 	border-right: solid 1px #c6c9ca;
 	border-bottom: solid 1px #c6c9ca;
-	background: url(../images/list.gif) 0px -60px #f2f4f6 no-repeat;
+	background: url("../img/list.gif") 0px -60px #f2f4f6 no-repeat;
 }
 
 table.list th a, table.list th span {
@@ -1145,15 +1169,15 @@ table.list .sort {
 
 table.list .sort:hover {
 	color: #2b2b2b;
-	background: url(../images/list.gif) 0px -90px #f4f4f4 no-repeat;
+	background: url("../img/list.gif") 0px -90px #f4f4f4 no-repeat;
 }
 
 table.list .desc, table.list .desc:hover {
-	background: url(../images/list.gif) right -120px no-repeat;
+	background: url("../img/list.gif") right -120px no-repeat;
 }
 
 table.list .asc, table.list .asc:hover {
-	background: url(../images/list.gif) right -150px no-repeat;
+	background: url("../img/list.gif") right -150px no-repeat;
 }
 
 table.list td {
@@ -1175,7 +1199,7 @@ table.list td .trueIcon {
 	height: 24px;
 	display: block;
 	overflow: hidden;
-	background: url(../images/list.gif) -150px -180px no-repeat;
+	background: url("../img/list.gif") -150px -180px no-repeat;
 }
 
 table.list td .falseIcon {
@@ -1183,7 +1207,7 @@ table.list td .falseIcon {
 	height: 24px;
 	display: block;
 	overflow: hidden;
-	background: url(../images/list.gif) -180px -180px no-repeat;
+	background: url("../img/list.gif") -180px -180px no-repeat;
 }
 
 table.input {
@@ -1266,30 +1290,55 @@ div.ac_results .ac_over {
 	background-color: #e4f2fa;
 }
 
-/* ---------- ErrorPage ---------- */
-
-.errorPage .errorBox {
-	height: 87px;
-	line-height: 30px;
-	width: 347px;
-	padding: 80px 38px 33px 115px;
-	margin: 100px auto;
-	background: url(../images/error_page_bg.gif) no-repeat 0px 0px;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.errorPage .errorMessage {
-	line-height: 50px;
-	color: #fb6600;
-	font-size: 14px;
-	font-weight: bold;
+::-webkit-scrollbar-button {
+    display: none;
 }
 
-.errorPage .errorUrl {
-	color: #333333;
+::-webkit-scrollbar-track {
+    background-color: #000;
 }
 
-.errorPage .errorUrl a {
-	color: #fb6600;
+::-webkit-scrollbar-track-piece {
+    background: #ddd;
 }
 
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #8e8e8e;
+}
 
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff6616;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #ff6616;
+}
+
+::-webkit-scrollbar-resizer {
+    background-color: #ff6e00;
+}
+
+.td-time{
+	cursor: pointer;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* 表单录入错误,字体样式为红色 */
+label.error{
+	color:red;
+}
+
+.w130{
+	width: 130px;
+}
+.w70{
+	width: 70px;
+}

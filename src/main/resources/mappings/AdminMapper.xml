@@ -41,4 +41,12 @@
 		where username = #{username}
 	</select>
 
+	<update id="update" parameterType="Admin">
+		update admin
+		<set>
+			password = #{password}
+		</set>
+		where id = #{id}
+	</update>
+
 </mapper>

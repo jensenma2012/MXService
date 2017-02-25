@@ -10,15 +10,21 @@
 
 	<security:http pattern="/backdoor/captcha**" security="none" />
 
-	<security:http use-expressions="false">
-		<security:access-denied-handler error-page="/backdoor/access_denied" />
+	<security:http>
 		<security:csrf disabled="true" />
+		<security:headers>
+			<security:frame-options policy="SAMEORIGIN" />
+		</security:headers>
 
+		<security:access-denied-handler error-page="/backdoor/unauthorized" />
 		<security:form-login login-page="/backdoor" login-processing-url="/backdoor/login" authentication-failure-url="/backdoor"
 			default-target-url="/backdoor/main" always-use-default-target="true" />
 		<security:logout invalidate-session="true" logout-success-url="/backdoor" logout-url="/backdoor/logout" />
 
-		<security:intercept-url pattern="/backdoor/**" access="ROLE_BASE" />
+		<security:intercept-url pattern="/backdoor/config/list" access="hasRole('ROLE_CONFIG')" />
+		<security:intercept-url pattern="/backdoor/config/add" access="hasRole('ROLE_CONFIG_ADD')" />
+		<security:intercept-url pattern="/backdoor/config/edit" access="hasRole('ROLE_CONFIG_EDIT')" />
+		<security:intercept-url pattern="/backdoor/**" access="hasRole('ROLE_BASE')" />
 	</security:http>
 
 	<security:authentication-manager>
@@ -28,6 +34,8 @@
 			</security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>
+
+	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
 	<bean id="adminDetailsService" class="com.xiaoma.service.impl.AdminDetailsServiceImpl" />
 	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">

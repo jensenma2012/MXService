@@ -11,7 +11,7 @@
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Config">
 		insert into config
-		(key, value, description, createDate)
+		(`key`, `value`, `description`, `createDate`)
 		values
 		(#{key}, #{value}, #{description}, now())
 	</insert>
@@ -19,16 +19,16 @@
 	<update id="update" parameterType="Config">
 		update config
 		<set>
-			key = #{key},
-			value = #{value},
-			description = #{description}
+			`key` = #{key},
+			`value` = #{value},
+			`description` = #{description}
 		</set>
-		where id = #{id}
+		where `id` = #{id}
 	</update>
 
 	<delete id="delete">
 		delete from config
-		where id in
+		where `id` in
 		<foreach collection="array" item="ids" open="(" separator="," close=")">
 			#{ids}
 		</foreach>
@@ -40,11 +40,30 @@
 		from config
 	</select>
 
+	<select id="queryCount" parameterType="PageCondition" resultType="long">
+		select
+		count(*)
+		from config
+		<if test="keyword != null">
+			where `key` like CONCAT('%',#{keyword},'%')
+		</if>
+	</select>
+
+	<select id="queryList" parameterType="PageCondition" resultType="Config">
+		select
+		*
+		from config
+		<if test="keyword != null">
+			where `key` like CONCAT('%',#{keyword},'%')
+		</if>
+		limit #{startIndex}, #{number}
+	</select>
+
 	<select id="queryById" parameterType="Long" resultType="Config">
 		select
 		*
 		from config
-		where id = #{id}
+		where `id` = #{id}
 	</select>
 
 </mapper>

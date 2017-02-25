@@ -20,7 +20,7 @@
 
 <body>
 	<div class="login">
-		<form id="loginForm" action="${base}/backdoor/login" method="post">
+		<form id="loginForm" action="backdoor/login" method="post">
 			<input type="hidden" name="captchaId" value="${captchaId}" />
 			<table>
 				<tr>
@@ -47,7 +47,7 @@
 					<th>验证码:</th>
 					<td>
 						<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off" />
-						<img id="captchaImage" class="captchaImage" src="${base}/backdoor/captcha?captchaId=${captchaId}" onclick="refresh()" title="点击更换验证码" />
+						<img id="captchaImage" class="captchaImage" src="backdoor/captcha?captchaId=${captchaId}" onclick="refresh()" title="点击更换验证码" />
 					</td>
 				</tr>
 				<tr>
@@ -58,7 +58,7 @@
 						&nbsp;
 					</th>
 					<td>
-						<input type="button" class="homeButton" value="" onclick="location.href='${base}/backdoor'" />
+						<input type="button" class="homeButton" value="" onclick="location.href='backdoor'" />
 						<input type="submit" class="loginButton" value="登录" />
 					</td>
 				</tr>
@@ -93,13 +93,13 @@
 				}
 			});
 
-			if(null != "${errmsg}" && "${errmsg}" != ""){
-	    		$.message("warn","${errmsg}");
+			if(null != "${message}" && "${message}" != ""){
+	    		$.message("warn","${message}");
 	    	}
 		});
 
 		function refresh() {
-			$("#captchaImage").attr("src", "${base}/backdoor/captcha?captchaId=${captchaId}&random="+Math.random());
+			$("#captchaImage").attr("src", "backdoor/captcha?captchaId=${captchaId}&random="+Math.random());
 		}
 	</script>
 </body>

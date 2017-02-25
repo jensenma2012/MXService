@@ -27,7 +27,7 @@ public class BackdoorController {
     private CaptchaServiceImpl captchaService;
 
     @RequestMapping(value = "/captcha", method = RequestMethod.GET)
-    public void image(String captchaId, HttpServletRequest request, HttpServletResponse response) {
+    public void captcha(String captchaId, HttpServletRequest request, HttpServletResponse response) {
         LOGGER.info("creating random captcha");
 
         if (StringUtils.isBlank(captchaId)) {
@@ -60,9 +60,21 @@ public class BackdoorController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String index() {
+    public String main() {
         LOGGER.info("accessing the admin main page");
-        return "/backdoor/index";
+        return "/backdoor/main";
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error() {
+        LOGGER.info("accessing the admin error page");
+        return "/backdoor/error";
+    }
+
+    @RequestMapping(value = "/unauthorized", method = RequestMethod.GET)
+    public String unauthorized() {
+        LOGGER.info("accessing the admin unauthorized page");
+        return "/backdoor/unauthorized";
     }
 
 }
