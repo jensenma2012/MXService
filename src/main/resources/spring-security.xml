@@ -21,6 +21,11 @@
 			default-target-url="/backdoor/main" always-use-default-target="true" />
 		<security:logout invalidate-session="true" logout-success-url="/backdoor" logout-url="/backdoor/logout" />
 
+		<security:intercept-url pattern="/backdoor/admin/list" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/backdoor/admin/add" access="hasRole('ROLE_ADMIN_ADD')" />
+		<security:intercept-url pattern="/backdoor/admin/save" access="hasRole('ROLE_ADMIN_ADD')" />
+		<security:intercept-url pattern="/backdoor/admin/edit" access="hasRole('ROLE_ADMIN_EDIT')" />
+		<security:intercept-url pattern="/backdoor/admin/update" access="hasRole('ROLE_ADMIN_EDIT')" />
 		<security:intercept-url pattern="/backdoor/config/list" access="hasRole('ROLE_CONFIG')" />
 		<security:intercept-url pattern="/backdoor/config/add" access="hasRole('ROLE_CONFIG_ADD')" />
 		<security:intercept-url pattern="/backdoor/config/save" access="hasRole('ROLE_CONFIG_ADD')" />

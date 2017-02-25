@@ -25,6 +25,8 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements UserDeta
 
     private static final String SALT = "admin";
 
+    private static final String DEFAULT_PASSWORD = "123456";
+
     @Resource
     private ShaPasswordEncoder passwordEncoder;
 
@@ -62,6 +64,16 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements UserDeta
     }
 
     @Override
+    public void save(Admin admin) throws Exception {
+        admin.setPassword(getDefaultPassword());
+        admin.setAccountNonExpired(true);
+        admin.setAccountNonLocked(true);
+        admin.setEnabled(true);
+        admin.setCredentialsNonExpired(true);
+        super.save(admin);
+    }
+
+    @Override
     public Admin getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
@@ -94,6 +106,10 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements UserDeta
 
     private String encodePassword(String password) {
         return passwordEncoder.encodePassword(password, SALT);
+    }
+
+    private String getDefaultPassword() {
+        return passwordEncoder.encodePassword(DEFAULT_PASSWORD, SALT);
     }
 
 }

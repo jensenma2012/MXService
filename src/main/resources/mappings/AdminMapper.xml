@@ -5,10 +5,10 @@
 		<id property="id" column="admin_id" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
-		<result property="isAccountNonExpired" column="is_account_non_expired" />
-		<result property="isAccountNonLocked" column="is_account_non_locked" />
-		<result property="isCredentialsNonExpired" column="is_credentials_non_expired" />
-		<result property="isEnabled" column="is_account_enabled" />
+		<result property="accountNonExpired" column="is_account_non_expired" />
+		<result property="accountNonLocked" column="is_account_non_locked" />
+		<result property="enabled" column="is_account_enabled" />
+		<result property="credentialsNonExpired" column="is_credentials_non_expired" />
 		<result property="createDate" column="admin_createDate" />
 
 		<collection property="roles" ofType="Role">
@@ -19,6 +19,75 @@
 			<result property="createDate" column="role_createDate" />
 		</collection>
 	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Admin">
+		insert into admin
+		(username, password, is_account_non_expired, is_account_non_locked, is_account_enabled, is_credentials_non_expired, createDate)
+		values
+		(#{username}, #{password}, #{accountNonExpired}, #{accountNonLocked}, #{enabled}, #{credentialsNonExpired}, now())
+	</insert>
+
+	<update id="update" parameterType="Admin">
+		update admin
+		<set>
+			password = #{password}
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="queryCount" parameterType="PageCondition" resultType="long">
+		select
+		count(*)
+		from admin
+		<if test="keyword != null">
+			where `username` like CONCAT('%',#{keyword},'%')
+		</if>
+	</select>
+
+	<select id="queryList" parameterType="PageCondition" resultMap="AdminResult">
+		select
+		admin.id as admin_id,
+		admin.username as username,
+		admin.password as password,
+		admin.is_account_non_expired as is_account_non_expired,
+		admin.is_account_non_locked as is_account_non_locked,
+		admin.is_credentials_non_expired as is_credentials_non_expired,
+		admin.is_account_enabled as is_account_enabled,
+		admin.createDate as admin_createDate,
+		role.id as role_id,
+		role.name as name,
+		role.authority_list as authority_list,
+		role.description as description,
+		role.createDate as role_createDate
+		from admin_role
+		left outer join admin on admin_id=admin.id
+		left outer join role on role_id=role.id
+		<if test="keyword != null">
+			where `username` like CONCAT('%',#{keyword},'%')
+		</if>
+		limit #{startIndex}, #{number}
+	</select>
+
+	<select id="queryById" parameterType="Long" resultMap="AdminResult">
+		select
+		admin.id as admin_id,
+		admin.username as username,
+		admin.password as password,
+		admin.is_account_non_expired as is_account_non_expired,
+		admin.is_account_non_locked as is_account_non_locked,
+		admin.is_credentials_non_expired as is_credentials_non_expired,
+		admin.is_account_enabled as is_account_enabled,
+		admin.createDate as admin_createDate,
+		role.id as role_id,
+		role.name as name,
+		role.authority_list as authority_list,
+		role.description as description,
+		role.createDate as role_createDate
+		from admin_role
+		left outer join admin on admin_id=admin.id
+		left outer join role on role_id=role.id
+		where `id` = #{id}
+	</select>
 
 	<select id="queryByUsername" parameterType="String" resultMap="AdminResult">
 		select
@@ -34,19 +103,11 @@
 		role.name as name,
 		role.authority_list as authority_list,
 		role.description as description,
-		role.createDate as createDate
+		role.createDate as role_createDate
 		from admin_role
 		left outer join admin on admin_id=admin.id
 		left outer join role on role_id=role.id
 		where username = #{username}
 	</select>
-
-	<update id="update" parameterType="Admin">
-		update admin
-		<set>
-			password = #{password}
-		</set>
-		where id = #{id}
-	</update>
 
 </mapper>

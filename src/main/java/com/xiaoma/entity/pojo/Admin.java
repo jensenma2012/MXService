@@ -11,10 +11,10 @@ public class Admin extends BasePojo implements UserDetails {
 
     private String username;
     private String password;
-    private boolean isAccountNonExpired;
-    private boolean isAccountNonLocked;
-    private boolean isCredentialsNonExpired;
-    private boolean isEnabled;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private boolean enabled;
     private List<Role> roles;
     private List<GrantedAuthority> authorities;
 
@@ -35,35 +35,35 @@ public class Admin extends BasePojo implements UserDetails {
     }
 
     public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
+        return accountNonExpired;
     }
 
-    public void setAccountNonExpired(boolean isAccountNonExpired) {
-        this.isAccountNonExpired = isAccountNonExpired;
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
     }
 
     public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
+        return accountNonLocked;
     }
 
-    public void setAccountNonLocked(boolean isAccountNonLocked) {
-        this.isAccountNonLocked = isAccountNonLocked;
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
     }
 
     public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
+        return credentialsNonExpired;
     }
 
-    public void setCredentialsNonExpired(boolean isCredentialsNonExpired) {
-        this.isCredentialsNonExpired = isCredentialsNonExpired;
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     public boolean isEnabled() {
-        return isEnabled;
+        return enabled;
     }
 
-    public void setEnabled(boolean isEnabled) {
-        this.isEnabled = isEnabled;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Role> getRoles() {
@@ -84,7 +84,7 @@ public class Admin extends BasePojo implements UserDetails {
 
     @Override
     public String toString() {
-        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", isAccountNonExpired=" + isAccountNonExpired + ", isAccountNonLocked=" + isAccountNonLocked + ", isCredentialsNonExpired=" + isCredentialsNonExpired + ", isEnabled=" + isEnabled + ", roles=" + roles + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
+        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", isAccountNonExpired=" + accountNonExpired + ", isAccountNonLocked=" + accountNonLocked + ", isCredentialsNonExpired=" + credentialsNonExpired + ", isAccountEnabled=" + enabled + ", roles=" + roles + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

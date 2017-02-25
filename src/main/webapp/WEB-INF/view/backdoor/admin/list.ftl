@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>配置项列表</title>
+	<title>管理员列表</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -21,29 +21,19 @@
 
 <body>
 	<div class="path">
-		 配置列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
+		 管理员列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
 	</div>
 	<form id="listForm" action="list" method="get">
 		<div class="bar">
-			<@security.authorize access="hasRole('ROLE_CONFIG_ADD')">
+			<@security.authorize access="hasRole('ROLE_ADMIN_ADD')">
 				<a href="add" class="iconButton">
 					<span class="addIcon">&nbsp;</span>添加
 				</a>
 			</@security.authorize>
 			<div class="buttonWrap">
-				<@security.authorize access="hasRole('ROLE_CONFIG_DELETE')">
-					<a href="javascript:;" id="deleteButton" class="iconButton disabled">
-						<span class="deleteIcon">&nbsp;</span>删除
-					</a>
-				</@security.authorize>
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<@security.authorize access="hasRole('ROLE_CONFIG_REFRESH')">
-					<a href="javascript:;" id="refreshConfigButton" class="iconButton">
-						<span class="upIcon">&nbsp;</span>同步
-					</a>
-				</@security.authorize>
 				<div class="menuWrap">
 					<a href="javascript:;" id="pageSizeSelect" class="button">
 						每页显示<span class="arrow">&nbsp;</span>
@@ -58,7 +48,7 @@
 				</div>
 			</div>
 			<div class="menuWrap">
-				<span class="arrow">配置key：</span>
+				<span class="arrow">用户名：</span>
 				<input type="text" class="text" name="keyword" value="${page.keyword}"/>
 				<input type="submit" class="button" value="查询" />
 			</div>
@@ -69,15 +59,15 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<span>配置key</span>
+					<span>用户名</span>
 				</th>
 				<th>
-					<span>配置描述</span>
+					<span>是否启用</span>
 				</th>
 				<th>
 					<span>创建时间</span>
 				</th>
-				<@security.authorize access="hasRole('ROLE_CONFIG_EDIT')">
+				<@security.authorize access="hasRole('ROLE_ADMIN_EDIT')">
 					<th>	
 						<span>操作</span>
 					</th>
@@ -89,15 +79,15 @@
 					<input type="checkbox" name="ids" value="${list.id}"/>
 				</td>
 				<td>
-					${list.key}
+					${list.username}
 				</td>
 				<td>
-					${list.description}
+					${(list.enabled?then("是","否"))!"-"}
 				</td>
 				<td>
 					${(list.createDate?string("yyyy-MM-dd HH:mm:ss"))!"-"}
 				</td>
-				<@security.authorize access="hasRole('ROLE_CONFIG_EDIT')">
+				<@security.authorize access="hasRole('ROLE_ADMIN_EDIT')">
 					<td>
 						<a href="edit?id=${list.id}">[编辑]</a>
 					</td>

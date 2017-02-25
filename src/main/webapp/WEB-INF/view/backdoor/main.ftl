@@ -58,7 +58,17 @@
 	    <tr>
 	        <td id="menu" class="menu">
 	        	<dl id="system">
-					<dt>系统管理 </dt> 
+					<@security.authorize access="hasAnyRole('ROLE_ADMIN')">
+						<dt>系统管理</dt>
+				    </@security.authorize>
+					<@security.authorize access="hasRole('ROLE_ADMIN')">
+						<dd>
+							<a href="admin/list" target="iframe">管理员管理</a>
+					    </dd>
+				    </@security.authorize>
+					<@security.authorize access="hasAnyRole('ROLE_CONFIG')">
+						<dt>配置管理</dt>
+				    </@security.authorize>
 					<@security.authorize access="hasRole('ROLE_CONFIG')">
 						<dd>
 							<a href="config/list" target="iframe">配置管理</a>

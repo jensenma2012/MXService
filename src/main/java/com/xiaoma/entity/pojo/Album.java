@@ -62,7 +62,7 @@ public class Album extends BasePojo {
             menu.append(String.format("%02d", index + 1));
             menu.append(" - " + musicList.get(index).getTitle() + "\n");
         }
-        menu.append("\n回复上级目录回到上一级，回复退出进入选择目录");
+        menu.append("\n回复上级目录回到上一级，回复退出进入主目录");
         return menu.toString();
     }
 
