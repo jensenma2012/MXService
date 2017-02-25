@@ -27,7 +27,7 @@ import com.xiaoma.wechat.handler.impl.TulingHandler;
 @Service
 public class WeChatServiceImpl implements WeChatService {
 
-    private static final Logger LOGGER = LogManager.getLogger(WeChatService.class);
+    private static final Logger LOGGER = LogManager.getLogger(WeChatServiceImpl.class);
 
     private Map<String, WeChatHandler> handlerMap = new HashMap<String, WeChatHandler>();
 

@@ -19,7 +19,7 @@
 
 <body>
 	<div class="path">账号设置</div>
-	<form id="inputForm" action="save" method="post">
+	<form id="inputForm" action="resetPassword" method="post">
 		<table class="input">
 			<tr>
 				<th>账号名称:</th>

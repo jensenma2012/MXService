@@ -4,8 +4,6 @@ import javax.annotation.Resource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.xiaoma.entity.pojo.Admin;
-import com.xiaoma.mybatis.mapper.AdminMapper;
+import com.xiaoma.service.AdminService;
 
 @Controller
 @RequestMapping("/backdoor/admin/")
@@ -22,30 +20,23 @@ public class AdminController extends BaseController {
     private static final Logger LOGGER = LogManager.getLogger(AdminController.class);
 
     @Resource
-    private ShaPasswordEncoder passwordEncoder;
-
-    @Resource
-    private AdminMapper adminMapper;
+    private AdminService adminService;
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
     public String modify(ModelMap model) {
         LOGGER.info("accessing the admin modify page");
-        Admin currentUser = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Admin currentUser = adminService.getCurrentUser();
         model.addAttribute("username", currentUser.getUsername());
         return "/backdoor/admin/modify";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(ModelMap model, RedirectAttributes redirectAttributes, String password, String newPassword) {
-        String salt = "admin";
-        Admin currentUser = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        boolean isPasswordValid = passwordEncoder.isPasswordValid(currentUser.getPassword(), password, salt);
-
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    public String resetPassword(ModelMap model, RedirectAttributes redirectAttributes, String password, String newPassword) {
+        boolean isPasswordValid = adminService.validatePassword(password);
         String message = "更新成功！";
         try {
             if (isPasswordValid) {
-                currentUser.setPassword(passwordEncoder.encodePassword(newPassword, salt));
-                adminMapper.update(currentUser);
+                adminService.resetPassword(newPassword);
             } else {
                 message = "密码输入错误！";
             }

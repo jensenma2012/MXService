@@ -23,12 +23,16 @@
 
 		<security:intercept-url pattern="/backdoor/config/list" access="hasRole('ROLE_CONFIG')" />
 		<security:intercept-url pattern="/backdoor/config/add" access="hasRole('ROLE_CONFIG_ADD')" />
+		<security:intercept-url pattern="/backdoor/config/save" access="hasRole('ROLE_CONFIG_ADD')" />
 		<security:intercept-url pattern="/backdoor/config/edit" access="hasRole('ROLE_CONFIG_EDIT')" />
+		<security:intercept-url pattern="/backdoor/config/update" access="hasRole('ROLE_CONFIG_EDIT')" />
+		<security:intercept-url pattern="/backdoor/config/refresh" access="hasRole('ROLE_CONFIG_REFRESH')" />
+		<security:intercept-url pattern="/backdoor/config/delete" access="hasRole('ROLE_CONFIG_DELETE')" />
 		<security:intercept-url pattern="/backdoor/**" access="hasRole('ROLE_BASE')" />
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="adminDetailsService">
+		<security:authentication-provider user-service-ref="adminService">
 			<security:password-encoder ref="passwordEncoder">
 				<security:salt-source system-wide="admin" />
 			</security:password-encoder>
@@ -37,7 +41,6 @@
 
 	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
-	<bean id="adminDetailsService" class="com.xiaoma.service.impl.AdminDetailsServiceImpl" />
 	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
 		<constructor-arg value="256" />
 	</bean>

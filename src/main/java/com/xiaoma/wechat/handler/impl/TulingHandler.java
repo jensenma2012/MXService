@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.response.WeChatResponse;
-import com.xiaoma.service.ResourceService;
+import com.xiaoma.service.ConfigService;
 import com.xiaoma.util.Constants;
 import com.xiaoma.util.JsonUtil;
 import com.xiaoma.wechat.handler.WeChatHandler;
@@ -20,7 +20,7 @@ import com.xiaoma.wechat.handler.WeChatHandler;
 public class TulingHandler implements WeChatHandler {
 
     @Resource
-    private ResourceService resourceService;
+    private ConfigService configService;
 
     @Override
     public WeChatResponse getWelcomeMessage(String toUserName, String fromUserName) {
@@ -40,8 +40,8 @@ public class TulingHandler implements WeChatHandler {
 
         String result = null;
         try {
-            WebTarget target = ClientBuilder.newClient().target(resourceService.getValue("TULING_URL"));
-            target = target.queryParam("key", resourceService.getValue("TULING__KEY"));
+            WebTarget target = ClientBuilder.newClient().target(configService.getValue("TULING_URL"));
+            target = target.queryParam("key", configService.getValue("TULING__KEY"));
             target = target.queryParam("info", content);
             Map<String, Object> resultMap = JsonUtil.convertStringToMap(target.request().get(String.class));
             result = resultMap.get("text").toString();

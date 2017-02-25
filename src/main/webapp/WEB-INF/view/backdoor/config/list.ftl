@@ -39,6 +39,11 @@
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
+				<@security.authorize access="hasRole('ROLE_CONFIG_REFRESH')">
+					<a href="javascript:;" id="refreshConfigButton" class="iconButton">
+						<span class="refreshIcon">&nbsp;</span>刷新服务器配置
+					</a>
+				</@security.authorize>
 				<div class="menuWrap">
 					<a href="javascript:;" id="pageSizeSelect" class="button">
 						每页显示<span class="arrow">&nbsp;</span>

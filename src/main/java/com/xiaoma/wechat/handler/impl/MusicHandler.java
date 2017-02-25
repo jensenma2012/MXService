@@ -13,7 +13,8 @@ import com.xiaoma.entity.pojo.Artist;
 import com.xiaoma.entity.pojo.Music;
 import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.entity.shared.MusicLibrary;
-import com.xiaoma.service.ResourceService;
+import com.xiaoma.service.ConfigService;
+import com.xiaoma.service.MusicService;
 import com.xiaoma.util.Constants;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
@@ -23,11 +24,14 @@ public class MusicHandler implements WeChatHandler {
     private Map<String, Object> userMap = new HashMap<String, Object>();
 
     @Resource
-    private ResourceService resourceService;
+    private ConfigService configService;
+
+    @Resource
+    private MusicService musicService;
 
     @Override
     public WeChatResponse getWelcomeMessage(String toUserName, String fromUserName) {
-        MusicLibrary library = new MusicLibrary(resourceService.getArtists());
+        MusicLibrary library = new MusicLibrary(musicService.getArtists());
         userMap.put(toUserName, library);
 
         WeChatResponse response = new WeChatResponse();
@@ -94,8 +98,8 @@ public class MusicHandler implements WeChatHandler {
                     response.setMsgType(WeChatResponseType.MUSIC);
                     response.setTitle(music.getTitle());
                     response.setDescription(music.getDescription());
-                    response.setMusicUrl(resourceService.getValue("MUSIC_URL") + music.getFilename());
-                    response.sethQMusicUrl(resourceService.getValue("MUSIC_URL") + music.getFilename());
+                    response.setMusicUrl(configService.getValue("MUSIC_URL") + music.getFilename());
+                    response.sethQMusicUrl(configService.getValue("MUSIC_URL") + music.getFilename());
                 }
             }
         }

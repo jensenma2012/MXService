@@ -14,57 +14,35 @@ import org.springframework.stereotype.Service;
 
 import com.xiaoma.entity.pojo.Album;
 import com.xiaoma.entity.pojo.Artist;
-import com.xiaoma.entity.pojo.Config;
-import com.xiaoma.mybatis.mapper.AlbumMapper;
-import com.xiaoma.mybatis.mapper.ConfigMapper;
-import com.xiaoma.service.ResourceService;
+import com.xiaoma.mybatis.mapper.BaseMapper;
+import com.xiaoma.service.MusicService;
 
 @Service
-public class ResourceServiceImpl implements ResourceService {
+public class MusicServiceImpl extends BaseServiceImpl<Album> implements MusicService {
 
-    private static final Logger LOGGER = LogManager.getLogger(ResourceService.class);
+    private static final Logger LOGGER = LogManager.getLogger(MusicServiceImpl.class);
 
-    private Map<String, String> configMap;
     private List<Artist> artists;
 
     @Resource
-    private ConfigMapper configMapper;
-
-    @Resource
-    private AlbumMapper albumMapper;
+    @Override
+    public void setMapper(BaseMapper<Album> mapper) {
+        super.setMapper(mapper);
+    }
 
     @PostConstruct
     public void init() {
-        LOGGER.info("start loading resources");
+        LOGGER.info("start loading music");
 
-        configMap = new HashMap<String, String>();
         artists = new ArrayList<Artist>();
-        loadResource();
+        loadMusic();
 
-        LOGGER.info("done loading resources");
+        LOGGER.info("done loading music");
     }
 
-    @Override
-    public void refreshResource() {
-        LOGGER.info("start refreshing resources");
-
-        configMap.clear();
-        artists.clear();
-        loadResource();
-
-        LOGGER.info("done refreshing resources");
-    }
-
-    private void loadResource() {
-        LOGGER.info("start loading properties and music");
-
+    private void loadMusic() {
         try {
-            for (Config config : configMapper.queryAll()) {
-                configMap.put(config.getKey(), config.getValue());
-            }
-            LOGGER.info("properties : " + configMap);
-
-            List<Album> albums = albumMapper.queryAll();
+            List<Album> albums = queryAll();
             Map<Long, Artist> artistMap = new HashMap<Long, Artist>();
             for (Album album : albums) {
                 Artist artist = album.getArtist();
@@ -85,15 +63,8 @@ public class ResourceServiceImpl implements ResourceService {
             }
             LOGGER.info("music : " + artists);
         } catch (Exception e) {
-            LOGGER.error("error when loading properties and music", e);
+            LOGGER.error("error when loading music", e);
         }
-
-        LOGGER.info("done loading properties and music");
-    }
-
-    @Override
-    public String getValue(String key) {
-        return configMap.get(key);
     }
 
     @Override

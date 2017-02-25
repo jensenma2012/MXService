@@ -3,6 +3,7 @@ $().ready( function() {
 	var $pageTotal = $("#pageTotal");
 	var $deleteButton = $("#deleteButton");
 	var $refreshButton = $("#refreshButton");
+	var refreshConfigButton = $("#refreshConfigButton");
 	var $pageSizeSelect = $("#pageSizeSelect");
 	var $pageSizeOption = $("#pageSizeOption a");
 	var $listTable = $("#listTable");
@@ -56,6 +57,29 @@ $().ready( function() {
 	$refreshButton.click( function() {
 		location.reload(true);
 		return false;
+	});
+
+	// 刷新服务器配置
+	refreshConfigButton.click( function() {
+		$.dialog({
+			type: "warn",
+			content: message("dialog.refreshConfirm"),
+			ok: message("dialog.ok"),
+			cancel: message("dialog.cancel"),
+			onOk: function() {
+				$.ajax({
+					url: "refresh",
+					type: "POST",
+					cache: false,
+					success: function(message) {
+						$.message(message);
+					},
+					error:function(data) {
+						error(data);
+					}
+				});
+			}
+		});
 	});
 
 	// 每页记录数选项

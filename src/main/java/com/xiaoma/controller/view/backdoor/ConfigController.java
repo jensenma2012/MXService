@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.xiaoma.entity.pojo.Config;
 import com.xiaoma.entity.pojo.PageCondition;
 import com.xiaoma.entity.shared.Pager;
-import com.xiaoma.mybatis.mapper.ConfigMapper;
+import com.xiaoma.service.ConfigService;
 
 @Controller
 @RequestMapping("/backdoor/config/")
@@ -26,7 +26,7 @@ public class ConfigController extends BaseController {
     private static final Logger LOGGER = LogManager.getLogger(ConfigController.class);
 
     @Resource
-    private ConfigMapper configMapper;
+    private ConfigService configService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(ModelMap model, Pager<Config> pager) {
@@ -38,8 +38,8 @@ public class ConfigController extends BaseController {
             }
 
             PageCondition condition = pager.getCondition();
-            long totalCount = configMapper.queryCount(condition);
-            List<Config> configs = configMapper.queryList(condition);
+            long totalCount = configService.queryCount(condition);
+            List<Config> configs = configService.queryList(condition);
 
             pager.setTotalCount(totalCount);
             pager.setResult(configs);
@@ -60,7 +60,7 @@ public class ConfigController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(RedirectAttributes redirectAttributes, Config config) {
         try {
-            configMapper.save(config);
+            configService.save(config);
             redirectAttributes.addFlashAttribute("message", "添加成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class ConfigController extends BaseController {
         LOGGER.info("accessing the config edit page");
 
         try {
-            Config config = configMapper.queryById(id);
+            Config config = configService.queryById(id);
             model.addAttribute("config", config);
         } catch (Exception e) {
             model.addAttribute("message", "获取失败！");
@@ -86,7 +86,7 @@ public class ConfigController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(RedirectAttributes redirectAttributes, Config config) {
         try {
-            configMapper.update(config);
+            configService.update(config);
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
@@ -95,12 +95,21 @@ public class ConfigController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "/refresh", method = RequestMethod.POST)
+    public @ResponseBody HashMap<String, String> refresh() {
+        HashMap<String, String> message = new HashMap<String, String>();
+        configService.refreshConfigs();
+        message.put("type", "success");
+        message.put("content", "操作成功！");
+        return message;
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public @ResponseBody HashMap<String, String> delete(Long[] ids) {
         HashMap<String, String> message = new HashMap<String, String>();
 
         try {
-            configMapper.delete(ids);
+            configService.delete(ids);
             message.put("type", "success");
             message.put("content", "删除成功！");
         } catch (Exception e) {

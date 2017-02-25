@@ -4,6 +4,7 @@ var messages = {
 	"dialog.ok" : "确&nbsp;&nbsp;定",
 	"dialog.cancel" : "取&nbsp;&nbsp;消",
 	"dialog.deleteConfirm" : "您确定要删除吗？",
+	"dialog.refreshConfirm" : "您确定要刷新服务器配置吗？",
 	"admin.dialog.clearConfirm" : "您确定要清空吗？",
 	"admin.dialog.resetConfirm" : "您确定要重置吗？",
 	"admin.dialog.logIgnore" : "您确定要忽略此功能的记录日志吗?",
