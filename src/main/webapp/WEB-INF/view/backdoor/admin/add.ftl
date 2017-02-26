@@ -28,6 +28,17 @@
 				</td>
 			</tr>
 			<tr>
+				<th><span class="requiredField">*</span>权限</th>
+				<td>
+					<select name="role.id">
+						<option value="">--请选择--</option>
+						[#list roles as role]
+						<option value="${role.id!}">${role.name!}</option>
+						[/#list]
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<th>
 					&nbsp;
 				</th>
@@ -51,6 +62,9 @@
 			$inputForm.validate({
 				rules: {
 					username: {
+						required:true
+					},
+					"role.id": {
 						required:true
 					}
 				},

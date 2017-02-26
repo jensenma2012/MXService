@@ -11,7 +11,7 @@
 
 	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Config">
 		insert into config
-		(`key`, `value`, `description`, `createDate`)
+		(`key`, `value`, description, createDate)
 		values
 		(#{key}, #{value}, #{description}, now())
 	</insert>
@@ -21,14 +21,14 @@
 		<set>
 			`key` = #{key},
 			`value` = #{value},
-			`description` = #{description}
+			description = #{description}
 		</set>
-		where `id` = #{id}
+		where id = #{id}
 	</update>
 
 	<delete id="delete">
 		delete from config
-		where `id` in
+		where id in
 		<foreach collection="array" item="ids" open="(" separator="," close=")">
 			#{ids}
 		</foreach>
@@ -63,7 +63,7 @@
 		select
 		*
 		from config
-		where `id` = #{id}
+		where id = #{id}
 	</select>
 
 </mapper>

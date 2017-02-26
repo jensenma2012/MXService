@@ -14,8 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.xiaoma.entity.pojo.Admin;
 import com.xiaoma.entity.pojo.PageCondition;
+import com.xiaoma.entity.pojo.Role;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.AdminService;
+import com.xiaoma.service.RoleService;
 
 @Controller
 @RequestMapping("/backdoor/admin/")
@@ -26,6 +28,9 @@ public class AdminController extends BaseController {
     @Resource
     private AdminService adminService;
 
+    @Resource
+    private RoleService roleService;
+
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
     public String modify(ModelMap model) {
         LOGGER.info("accessing the admin modify page");
@@ -35,8 +40,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public String resetPassword(ModelMap model, RedirectAttributes redirectAttributes, String password,
-            String newPassword) {
+    public String resetPassword(ModelMap model, RedirectAttributes redirectAttributes, String password, String newPassword) {
         boolean isPasswordValid = adminService.validatePassword(password);
         String message = "更新成功！";
         try {
@@ -77,8 +81,16 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add() {
+    public String add(ModelMap model) throws Exception {
         LOGGER.info("accessing the admin add page");
+
+        try {
+            List<Role> roles = roleService.queryAll();
+            model.addAttribute("roles", roles);
+        } catch (Exception e) {
+            model.addAttribute("message", "获取失败！");
+        }
+
         return "/backdoor/admin/add";
     }
 
@@ -100,6 +112,8 @@ public class AdminController extends BaseController {
 
         try {
             Admin admin = adminService.queryById(id);
+            List<Role> roles = roleService.queryAll();
+            model.addAttribute("roles", roles);
             model.addAttribute("admin", admin);
         } catch (Exception e) {
             model.addAttribute("message", "获取失败！");
@@ -116,7 +130,7 @@ public class AdminController extends BaseController {
             return "redirect:/backdoor/admin/list";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "修改失败！");
-            return "redirect:/backdoor/admin/edit";
+            return "redirect:/backdoor/admin/edit?id=" + admin.getId();
         }
     }
 

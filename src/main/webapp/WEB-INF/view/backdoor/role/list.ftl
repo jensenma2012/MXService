@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>管理员列表</title>
+	<title>权限列表</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -21,11 +21,11 @@
 
 <body>
 	<div class="path">
-		 管理员列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
+		 权限列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
 	</div>
 	<form id="listForm" action="list" method="get">
 		<div class="bar">
-			<@security.authorize access="hasRole('ROLE_ADMIN_ADD')">
+			<@security.authorize access="hasRole('ROLE_ROLE_ADD')">
 				<a href="add" class="iconButton">
 					<span class="addIcon">&nbsp;</span>添加
 				</a>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="menuWrap">
-				<span class="arrow">用户名：</span>
+				<span class="arrow">权限名：</span>
 				<input type="text" class="text" name="keyword" value="${page.keyword}"/>
 				<input type="submit" class="button" value="查询" />
 			</div>
@@ -59,18 +59,15 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<span>用户名</span>
+					<span>权限名</span>
 				</th>
 				<th>
-					<span>权限</span>
-				</th>
-				<th>
-					<span>是否启用</span>
+					<span>权限描述</span>
 				</th>
 				<th>
 					<span>创建时间</span>
 				</th>
-				<@security.authorize access="hasRole('ROLE_ADMIN_EDIT')">
+				<@security.authorize access="hasRole('ROLE_ROLE_EDIT')">
 					<th>	
 						<span>操作</span>
 					</th>
@@ -82,18 +79,15 @@
 					<input type="checkbox" name="ids" value="${list.id}"/>
 				</td>
 				<td>
-					${list.username}
+					${list.name}
 				</td>
 				<td>
-					${list.role.name}
-				</td>
-				<td>
-					${(list.enabled?then("是","否"))!"-"}
+					${list.description}
 				</td>
 				<td>
 					${(list.createDate?string("yyyy-MM-dd HH:mm:ss"))!"-"}
 				</td>
-				<@security.authorize access="hasRole('ROLE_ADMIN_EDIT')">
+				<@security.authorize access="hasRole('ROLE_ROLE_EDIT')">
 					<td>
 						<a href="edit?id=${list.id}">[编辑]</a>
 					</td>

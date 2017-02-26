@@ -54,11 +54,10 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements UserDeta
 
     public List<GrantedAuthority> getAuthorities(Admin admin) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        for (Role role : admin.getRoles()) {
-            for (String s : role.getAuthorities()) {
-                GrantedAuthority authoritiy = new SimpleGrantedAuthority(s);
-                authorities.add(authoritiy);
-            }
+        Role role = admin.getRole();
+        for (String s : role.getAuthorities()) {
+            GrantedAuthority authoritiy = new SimpleGrantedAuthority(s);
+            authorities.add(authoritiy);
         }
         return authorities;
     }

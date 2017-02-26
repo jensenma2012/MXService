@@ -25,7 +25,25 @@
 			<tr>
 				<th><span class="requiredField">*</span>用户名:</th>
 				<td>
-					<input type="text" name="key" class="text" value="${admin.username}" maxlength="64" />
+					<input type="text" name="username" class="text" value="${admin.username}" maxlength="64" disabled="true" />
+				</td>
+			</tr>
+			<tr>
+				<th><span class="requiredField">*</span>权限</th>
+				<td>
+					<select name="role.id" class="select">
+						<option value="">--请选择--</option>
+						[#list roles as role]
+						<option value="${role.id!}" [#if admin.role.id?? && admin.role.id==role.id]selected[/#if]>${role.name!}</option>
+						[/#list]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th><span class="requiredField">*</span>是否启用</th>
+				<td>
+					<input type="radio" name="enabled" [#if admin.enabled]checked[/#if] value="true" />是
+					<input type="radio" name="enabled" [#if !admin.enabled]checked[/#if] value="false" />否
 				</td>
 			</tr>
 			<tr>
@@ -52,6 +70,12 @@
 			$inputForm.validate({
 				rules: {
 					username: {
+						required:true
+					},
+					"role.id": {
+						required:true
+					},
+					enabled: {
 						required:true
 					}
 				},

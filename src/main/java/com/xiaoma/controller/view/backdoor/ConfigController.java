@@ -91,7 +91,7 @@ public class ConfigController extends BaseController {
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "修改失败！");
-            return "redirect:/backdoor/config/edit";
+            return "redirect:/backdoor/config/edit?id=" + config.getId();
         }
     }
 

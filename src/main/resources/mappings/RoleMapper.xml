@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoma.mybatis.mapper.RoleMapper">
+	<resultMap id="RoleResult" type="Role">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="value" column="value" />
+		<result property="authorityList" column="authority_list" />
+		<result property="createDate" column="createDate" />
+	</resultMap>
+
+	<select id="queryAll" resultType="Role">
+		select
+		*
+		from role
+	</select>
+
+	<select id="queryCount" parameterType="PageCondition" resultType="long">
+		select
+		count(*)
+		from role
+		<if test="keyword != null">
+			where name like CONCAT('%',#{keyword},'%')
+		</if>
+	</select>
+
+	<select id="queryList" parameterType="PageCondition" resultType="Role">
+		select
+		*
+		from role
+		<if test="keyword != null">
+			where name like CONCAT('%',#{keyword},'%')
+		</if>
+		limit #{startIndex}, #{number}
+	</select>
+
+</mapper>

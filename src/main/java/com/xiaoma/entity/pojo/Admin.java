@@ -15,7 +15,7 @@ public class Admin extends BasePojo implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-    private List<Role> roles;
+    private Role role;
     private List<GrantedAuthority> authorities;
 
     public String getUsername() {
@@ -66,12 +66,12 @@ public class Admin extends BasePojo implements UserDetails {
         this.enabled = enabled;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public List<GrantedAuthority> getAuthorities() {
@@ -84,7 +84,7 @@ public class Admin extends BasePojo implements UserDetails {
 
     @Override
     public String toString() {
-        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", isAccountNonExpired=" + accountNonExpired + ", isAccountNonLocked=" + accountNonLocked + ", isCredentialsNonExpired=" + credentialsNonExpired + ", isAccountEnabled=" + enabled + ", roles=" + roles + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
+        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked=" + accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled + ", role=" + role + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }
