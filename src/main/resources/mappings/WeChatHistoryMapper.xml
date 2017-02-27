@@ -33,13 +33,13 @@
 		</foreach>
 	</delete>
 
-	<select id="queryAll" resultType="WeChatHistory">
+	<select id="queryAll" resultMap="WeChatUserResult">
 		select
 		*
 		from wechat_history
 	</select>
 
-	<select id="queryById" parameterType="Long" resultType="WeChatHistory">
+	<select id="queryById" parameterType="Long" resultMap="WeChatUserResult">
 		select
 		*
 		from wechat_history

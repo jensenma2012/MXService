@@ -19,6 +19,10 @@ public class Pager<T> {
 
     private String keyword;// 查找关键字
 
+    private String orderProperty;// 排序字段
+
+    private String orderDirection;// 排序方式
+
     private List<T> result = new ArrayList<T>();
 
     public int getPageNumber() {
@@ -82,8 +86,24 @@ public class Pager<T> {
         this.result = result;
     }
 
+    public String getOrderProperty() {
+        return orderProperty;
+    }
+
+    public void setOrderProperty(String orderProperty) {
+        this.orderProperty = orderProperty;
+    }
+
+    public String getOrderDirection() {
+        return orderDirection;
+    }
+
+    public void setOrderDirection(String orderDirection) {
+        this.orderDirection = orderDirection;
+    }
+
     public PageCondition getCondition() {
-        return new PageCondition(keyword, (pageNumber - 1) * pageSize, pageSize);
+        return new PageCondition(keyword, (pageNumber - 1) * pageSize, pageSize, orderProperty, orderDirection);
     }
 
 }

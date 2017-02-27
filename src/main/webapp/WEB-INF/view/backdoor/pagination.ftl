@@ -1,4 +1,6 @@
 <input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize}" />
+<input type="hidden" id="orderProperty" name="orderProperty" value="${page.orderProperty}" />
+<input type="hidden" id="orderDirection" name="orderDirection" value="${page.orderDirection}" />
 <#if (page.pageCount > 1)>
 	<div class="pagination">
 		<#if (page.pageNumber == 1)>

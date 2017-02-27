@@ -4,10 +4,26 @@
 	<resultMap id="RoleResult" type="Role">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
-		<result property="value" column="value" />
 		<result property="authorityList" column="authority_list" />
+		<result property="description" column="description" />
 		<result property="createDate" column="createDate" />
 	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Role">
+		insert into role
+		(name, authority_list, description, createDate)
+		values
+		(#{name}, #{authorityList}, #{description}, now())
+	</insert>
+
+	<update id="update" parameterType="Role">
+		update role
+		<set>
+			authority_list = #{authorityList},
+			description = #{description}
+		</set>
+		where id = #{id}
+	</update>
 
 	<select id="queryAll" resultType="Role">
 		select
@@ -24,14 +40,24 @@
 		</if>
 	</select>
 
-	<select id="queryList" parameterType="PageCondition" resultType="Role">
+	<select id="queryList" parameterType="PageCondition" resultMap="RoleResult">
 		select
 		*
 		from role
 		<if test="keyword != null">
 			where name like CONCAT('%',#{keyword},'%')
 		</if>
+		<if test="orderProperty != null">
+			order by ${orderProperty} ${orderDirection}
+		</if>
 		limit #{startIndex}, #{number}
+	</select>
+
+	<select id="queryById" parameterType="Long" resultMap="RoleResult">
+		select
+		*
+		from role
+		where id = #{id}
 	</select>
 
 </mapper>

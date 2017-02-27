@@ -69,13 +69,13 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<span>配置key</span>
+					<a href="javascript:" class="sort" name="config.key">配置key</a>
 				</th>
 				<th>
-					<span>配置描述</span>
+					<a href="javascript:" class="sort" name="config.description">配置描述</a>
 				</th>
 				<th>
-					<span>创建时间</span>
+					<a href="javascript:" class="sort" name="config.createDate">创建时间</a>
 				</th>
 				<@security.authorize access="hasRole('ROLE_CONFIG_EDIT')">
 					<th>	

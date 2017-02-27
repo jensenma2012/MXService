@@ -42,7 +42,7 @@
 	        <th>
 	            <div id="nav" class="nav">
 	                <ul>
-		                <@security.authorize access="hasAnyRole('ROLE_CONFIG')">
+		                <@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE','ROLE_CONFIG')">
 							<li><a href="#system">系统</a></li>
 						</@security.authorize>
 	                </ul>
@@ -50,7 +50,7 @@
 	            <div class="link"></div>
 	            <div class="link">
 	                <strong><@security.authentication property="principal.username" /></strong> 您好!
-	                <a href="admin/modify" target="iframe">[重置密码]</a>
+	                <a href="admin/modify" target="iframe">[密码重置]</a>
 	                <a href="logout" target="_top">[注销]</a>
 	            </div>
 	        </th>
@@ -72,11 +72,11 @@
 					    </dd>
 				    </@security.authorize>
 					<@security.authorize access="hasAnyRole('ROLE_CONFIG')">
-						<dt>配置管理</dt>
+						<dt>配置项管理</dt>
 				    </@security.authorize>
 					<@security.authorize access="hasRole('ROLE_CONFIG')">
 						<dd>
-							<a href="config/list" target="iframe">配置管理</a>
+							<a href="config/list" target="iframe">配置项管理</a>
 					    </dd>
 				    </@security.authorize>
 				</dl>

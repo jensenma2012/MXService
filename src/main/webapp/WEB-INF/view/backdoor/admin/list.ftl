@@ -59,16 +59,16 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<span>用户名</span>
+					<a href="javascript:" class="sort" name="admin.username">用户名</a>
 				</th>
 				<th>
-					<span>权限</span>
+					<a href="javascript:" class="sort" name="role.name">权限</a>
 				</th>
 				<th>
-					<span>是否启用</span>
+					<a href="javascript:" class="sort" name="admin.is_account_enabled">是否启用</a>
 				</th>
 				<th>
-					<span>创建时间</span>
+					<a href="javascript:" class="sort" name="admin.createDate">创建时间</a>
 				</th>
 				<@security.authorize access="hasRole('ROLE_ADMIN_EDIT')">
 					<th>	

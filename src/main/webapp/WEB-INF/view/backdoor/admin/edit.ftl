@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>修改管理员信息</title>
+	<title>编辑管理员</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -18,14 +18,14 @@
 </head>
 
 <body>
-	<div class="path">修改管理员信息</div>
+	<div class="path">编辑管理员</div>
 	<form id="inputForm" action="update" method="post">
 		<input type="hidden" name="id" value="${admin.id}" />
 		<table class="input">
 			<tr>
-				<th><span class="requiredField">*</span>用户名:</th>
+				<th>用户名:
 				<td>
-					<input type="text" name="username" class="text" value="${admin.username}" maxlength="64" disabled="true" />
+					${admin.username}
 				</td>
 			</tr>
 			<tr>
@@ -34,7 +34,7 @@
 					<select name="role.id" class="select">
 						<option value="">--请选择--</option>
 						[#list roles as role]
-						<option value="${role.id!}" [#if admin.role.id?? && admin.role.id==role.id]selected[/#if]>${role.name!}</option>
+							<option value="${role.id!}" [#if admin.role.id?? && admin.role.id==role.id]selected[/#if]>${role.name!}</option>
 						[/#list]
 					</select>
 				</td>
@@ -42,8 +42,8 @@
 			<tr>
 				<th><span class="requiredField">*</span>是否启用</th>
 				<td>
-					<input type="radio" name="enabled" [#if admin.enabled]checked[/#if] value="true" />是
-					<input type="radio" name="enabled" [#if !admin.enabled]checked[/#if] value="false" />否
+					<input type="radio" name="enabled" value="true" [#if admin.enabled]checked[/#if] />是
+					<input type="radio" name="enabled" value="false" [#if !admin.enabled]checked[/#if] />否
 				</td>
 			</tr>
 			<tr>
@@ -69,9 +69,6 @@
 			var $inputForm = $("#inputForm");
 			$inputForm.validate({
 				rules: {
-					username: {
-						required:true
-					},
 					"role.id": {
 						required:true
 					},

@@ -26,11 +26,6 @@
 				<#if content??>
 					<dd>${content}</dd>
 				</#if>
-				<#if constraintViolations?has_content>
-					<#list constraintViolations as constraintViolation>
-						<dd><${constraintViolation.propertyPath}> ${constraintViolation.message}</dd>
-					</#list>
-				</#if>
 				<dd>
 					<a href="javascript:;" onclick="window.history.back(); return false;">返回上一页</a>
 				</dd>

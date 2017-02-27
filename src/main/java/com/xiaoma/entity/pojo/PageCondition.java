@@ -5,12 +5,16 @@ public class PageCondition {
     private String keyword;
     private int startIndex;
     private int number;
+    private String orderProperty;
+    private String orderDirection;
 
-    public PageCondition(String keyword, int startIndex, int number) {
+    public PageCondition(String keyword, int startIndex, int number, String orderProperty, String orderDirection) {
         super();
         this.keyword = keyword;
         this.startIndex = startIndex;
         this.number = number;
+        this.orderProperty = orderProperty;
+        this.orderDirection = orderDirection;
     }
 
     public String getKeyword() {
@@ -35,6 +39,22 @@ public class PageCondition {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getOrderProperty() {
+        return orderProperty;
+    }
+
+    public void setOrderProperty(String orderProperty) {
+        this.orderProperty = orderProperty;
+    }
+
+    public String getOrderDirection() {
+        return orderDirection;
+    }
+
+    public void setOrderDirection(String orderDirection) {
+        this.orderDirection = orderDirection;
     }
 
 }

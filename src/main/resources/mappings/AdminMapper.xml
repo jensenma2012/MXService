@@ -73,6 +73,9 @@
 		<if test="keyword != null">
 			where username like CONCAT('%',#{keyword},'%')
 		</if>
+		<if test="orderProperty != null">
+			order by ${orderProperty} ${orderDirection}
+		</if>
 		limit #{startIndex}, #{number}
 	</select>
 

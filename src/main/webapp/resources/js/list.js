@@ -10,8 +10,11 @@ $().ready( function() {
 	var $selectAll = $("#selectAll");
 	var $ids = $("#listTable input[name='ids']");
 	var $contentRow = $("#listTable tr:gt(0)");
+	var $sort = $("#listTable a.sort");
 	var $pageSize = $("#pageSize");
 	var $pageNumber = $("#pageNumber");
+	var $orderProperty = $("#orderProperty");
+	var $orderDirection = $("#orderDirection");
 
 	// 删除
 	$deleteButton.click( function() {
@@ -139,6 +142,34 @@ $().ready( function() {
 		$selectAll.attr("checked",$ids.length == $("input[name='ids']:checked").length ? true : false);
 		$("#selectall").attr("checked",$ids.length == $("input[name='ids']:checked").length ? true : false);
 	});
+
+	// 排序
+	$sort.click( function() {
+		var orderProperty = $(this).attr("name");
+		if ($orderProperty.val() == orderProperty) {
+			if ($orderDirection.val() == "asc") {
+				$orderDirection.val("desc")
+			} else {
+				$orderDirection.val("asc");
+			}
+		} else {
+			$orderProperty.val(orderProperty);
+			$orderDirection.val("asc");
+		}
+		$pageNumber.val("1");
+		$listForm.submit();
+		return false;
+	});
+
+	// 排序图标
+	if ($orderProperty.val() != "") {
+		$sort = $("#listTable a[name='" + $orderProperty.val() + "']");
+		if ($orderDirection.val() == "asc") {
+			$sort.removeClass("desc").addClass("asc");
+		} else {
+			$sort.removeClass("asc").addClass("desc");
+		}
+	}
 
 	// 页码输入
 	$pageNumber.keypress(function(event) {

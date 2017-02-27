@@ -50,6 +50,7 @@ public class AdminController extends BaseController {
                 message = "密码输入错误！";
             }
         } catch (Exception e) {
+            LOGGER.error("error when resetting password for admin", e);
             message = "更新失败！";
         }
 
@@ -62,10 +63,6 @@ public class AdminController extends BaseController {
         LOGGER.info("accessing the admin list page");
 
         try {
-            if (pager == null) {
-                pager = new Pager<Admin>();
-            }
-
             PageCondition condition = pager.getCondition();
             long totalCount = adminService.queryCount(condition);
             List<Admin> admins = adminService.queryList(condition);
@@ -74,6 +71,7 @@ public class AdminController extends BaseController {
             pager.setResult(admins);
             model.addAttribute("page", pager);
         } catch (Exception e) {
+            LOGGER.error("error when fetching admin list", e);
             model.addAttribute("message", "获取失败！");
         }
 
@@ -81,13 +79,14 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(ModelMap model) throws Exception {
+    public String add(ModelMap model) {
         LOGGER.info("accessing the admin add page");
 
         try {
             List<Role> roles = roleService.queryAll();
             model.addAttribute("roles", roles);
         } catch (Exception e) {
+            LOGGER.error("error when fetching role list", e);
             model.addAttribute("message", "获取失败！");
         }
 
@@ -101,6 +100,7 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute("message", "添加成功！");
             return "redirect:/backdoor/admin/list";
         } catch (Exception e) {
+            LOGGER.error("error when adding a new admin", e);
             redirectAttributes.addFlashAttribute("message", "添加失败！");
             return "redirect:/backdoor/admin/add";
         }
@@ -112,10 +112,17 @@ public class AdminController extends BaseController {
 
         try {
             Admin admin = adminService.queryById(id);
-            List<Role> roles = roleService.queryAll();
-            model.addAttribute("roles", roles);
             model.addAttribute("admin", admin);
         } catch (Exception e) {
+            LOGGER.error("error when fetching admin[id=" + id + "]", e);
+            model.addAttribute("message", "获取失败！");
+        }
+
+        try {
+            List<Role> roles = roleService.queryAll();
+            model.addAttribute("roles", roles);
+        } catch (Exception e) {
+            LOGGER.error("error when fetching role list", e);
             model.addAttribute("message", "获取失败！");
         }
 
@@ -129,6 +136,7 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/admin/list";
         } catch (Exception e) {
+            LOGGER.error("error when updating admin[id=" + admin.getId() + "]", e);
             redirectAttributes.addFlashAttribute("message", "修改失败！");
             return "redirect:/backdoor/admin/edit?id=" + admin.getId();
         }

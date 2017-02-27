@@ -26,6 +26,11 @@
 		<security:intercept-url pattern="/backdoor/admin/save" access="hasRole('ROLE_ADMIN_ADD')" />
 		<security:intercept-url pattern="/backdoor/admin/edit" access="hasRole('ROLE_ADMIN_EDIT')" />
 		<security:intercept-url pattern="/backdoor/admin/update" access="hasRole('ROLE_ADMIN_EDIT')" />
+		<security:intercept-url pattern="/backdoor/role/list" access="hasRole('ROLE_ROLE')" />
+		<security:intercept-url pattern="/backdoor/role/add" access="hasRole('ROLE_ROLE_ADD')" />
+		<security:intercept-url pattern="/backdoor/role/save" access="hasRole('ROLE_ROLE_ADD')" />
+		<security:intercept-url pattern="/backdoor/role/edit" access="hasRole('ROLE_ROLE_EDIT')" />
+		<security:intercept-url pattern="/backdoor/role/update" access="hasRole('ROLE_ROLE_EDIT')" />
 		<security:intercept-url pattern="/backdoor/config/list" access="hasRole('ROLE_CONFIG')" />
 		<security:intercept-url pattern="/backdoor/config/add" access="hasRole('ROLE_CONFIG_ADD')" />
 		<security:intercept-url pattern="/backdoor/config/save" access="hasRole('ROLE_CONFIG_ADD')" />

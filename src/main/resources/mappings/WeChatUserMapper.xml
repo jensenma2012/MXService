@@ -32,20 +32,20 @@
 		</foreach>
 	</delete>
 
-	<select id="queryAll" resultType="WeChatUser">
+	<select id="queryAll" resultMap="WeChatUserResult">
 		select
 		*
 		from wechat_user
 	</select>
 
-	<select id="queryById" parameterType="Long" resultType="WeChatUser">
+	<select id="queryById" parameterType="Long" resultMap="WeChatUserResult">
 		select
 		*
 		from wechat_user
 		where id = #{id}
 	</select>
 
-	<select id="queryByUsername" parameterType="String" resultType="WeChatUser">
+	<select id="queryByUsername" parameterType="String" resultMap="WeChatUserResult">
 		select
 		*
 		from wechat_user

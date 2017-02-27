@@ -29,7 +29,8 @@ public class BaseController {
 
     @ExceptionHandler
     public String handleException(HttpServletRequest request, HttpServletResponse response, Exception e) {
-        LOGGER.error("服务器异常:", e.getMessage());
+        LOGGER.error("server exception", e);
+        request.setAttribute("content", e.getMessage());
         return "/backdoor/error";
     }
 

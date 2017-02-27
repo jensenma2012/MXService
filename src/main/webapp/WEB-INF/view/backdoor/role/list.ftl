@@ -59,13 +59,13 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<span>权限名</span>
+					<a href="javascript:" class="sort" name="role.name">权限名</a>
 				</th>
 				<th>
-					<span>权限描述</span>
+					<a href="javascript:" class="sort" name="role.description">权限描述</a>
 				</th>
 				<th>
-					<span>创建时间</span>
+					<a href="javascript:" class="sort" name="role.createDate">创建时间</a>
 				</th>
 				<@security.authorize access="hasRole('ROLE_ROLE_EDIT')">
 					<th>	

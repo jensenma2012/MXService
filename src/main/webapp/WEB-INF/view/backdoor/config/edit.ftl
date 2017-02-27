@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>修改配置项</title>
+	<title>编辑配置项</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<div class="path">修改配置项</div>
+	<div class="path">编辑配置项</div>
 	<form id="inputForm" action="update" method="post">
 		<input type="hidden" name="id" value="${config.id}" />
 		<table class="input">
@@ -64,10 +64,15 @@
 			$inputForm.validate({
 				rules: {
 					key: {
-						required:true
+						required:true,
+						maxlength:64
 					},
 					value: {
-						required:true
+						required:true,
+						maxlength:255
+					},
+					description: {
+						maxlength:255
 					}
 				},
 				messages: {

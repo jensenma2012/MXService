@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>马老师个人服务站后台管理</title>
+	<title>密码重置</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<div class="path">账号设置</div>
+	<div class="path">密码重置</div>
 	<form id="inputForm" action="resetPassword" method="post">
 		<table class="input">
 			<tr>
@@ -67,27 +67,27 @@
 		$().ready(function() {
 			var $inputForm = $("#inputForm");
 			$inputForm.validate({
-				rules : {
-					password : {
-						required : true,
-						pattern : /^[^\s&\"<>]+$/,
-						minlength : 4,
-						maxlength : 32
+				rules: {
+					password: {
+						required:true,
+						pattern:/^[^\s&\"<>]+$/,
+						minlength:4,
+						maxlength:32
 					},
-					newPassword : {
-						required : true,
-						pattern : /^[^\s&\"<>]+$/,
-						minlength : 4,
-						maxlength : 32
+					newPassword: {
+						required:true,
+						pattern:/^[^\s&\"<>]+$/,
+						minlength:4,
+						maxlength:32
 					},
-					rePassword : {
-						required : true,
-						equalTo : "#newPassword"
+					rePassword: {
+						required:true,
+						equalTo:"#newPassword"
 					}
 				},
-				messages : {
-					newPassword : {
-						pattern : "包含非法字符！"
+				messages: {
+					newPassword: {
+						pattern:"包含非法字符！"
 					}
 				}
 			});

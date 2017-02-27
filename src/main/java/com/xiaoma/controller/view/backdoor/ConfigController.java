@@ -33,10 +33,6 @@ public class ConfigController extends BaseController {
         LOGGER.info("accessing the config list page");
 
         try {
-            if (pager == null) {
-                pager = new Pager<Config>();
-            }
-
             PageCondition condition = pager.getCondition();
             long totalCount = configService.queryCount(condition);
             List<Config> configs = configService.queryList(condition);
@@ -45,6 +41,7 @@ public class ConfigController extends BaseController {
             pager.setResult(configs);
             model.addAttribute("page", pager);
         } catch (Exception e) {
+            LOGGER.error("error when fetching config list", e);
             model.addAttribute("message", "获取失败！");
         }
 
@@ -64,6 +61,7 @@ public class ConfigController extends BaseController {
             redirectAttributes.addFlashAttribute("message", "添加成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
+            LOGGER.error("error when adding a new config", e);
             redirectAttributes.addFlashAttribute("message", "添加失败！");
             return "redirect:/backdoor/config/add";
         }
@@ -77,6 +75,7 @@ public class ConfigController extends BaseController {
             Config config = configService.queryById(id);
             model.addAttribute("config", config);
         } catch (Exception e) {
+            LOGGER.error("error when fetching config[id=" + id + "]", e);
             model.addAttribute("message", "获取失败！");
         }
 
@@ -90,6 +89,7 @@ public class ConfigController extends BaseController {
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
+            LOGGER.error("error when updating config[id=" + config.getId() + "]", e);
             redirectAttributes.addFlashAttribute("message", "修改失败！");
             return "redirect:/backdoor/config/edit?id=" + config.getId();
         }
@@ -113,6 +113,7 @@ public class ConfigController extends BaseController {
             message.put("type", "success");
             message.put("content", "删除成功！");
         } catch (Exception e) {
+            LOGGER.error("error when deleting config[ids=" + ids + "]", e);
             message.put("type", "error");
             message.put("content", "删除失败！");
         }

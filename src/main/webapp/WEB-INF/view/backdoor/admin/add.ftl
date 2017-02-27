@@ -33,7 +33,7 @@
 					<select name="role.id">
 						<option value="">--请选择--</option>
 						[#list roles as role]
-						<option value="${role.id!}">${role.name!}</option>
+							<option value="${role.id!}">${role.name!}</option>
 						[/#list]
 					</select>
 				</td>
@@ -62,7 +62,8 @@
 			$inputForm.validate({
 				rules: {
 					username: {
-						required:true
+						required:true,
+						maxlength:64
 					},
 					"role.id": {
 						required:true

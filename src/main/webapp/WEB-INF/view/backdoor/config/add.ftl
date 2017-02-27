@@ -63,10 +63,15 @@
 			$inputForm.validate({
 				rules: {
 					key: {
-						required:true
+						required:true,
+						maxlength:64
 					},
 					value: {
-						required:true
+						required:true,
+						maxlength:255
+					},
+					description: {
+						maxlength:255
 					}
 				},
 				messages: {
