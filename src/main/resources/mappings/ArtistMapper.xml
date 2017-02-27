@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoma.mybatis.mapper.ArtistMapper">
+	<resultMap id="ArtistResult" type="Artist">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="createDate" column="createDate" />
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Artist">
+		insert into artist
+		(name, description, createDate)
+		values
+		(#{name}, #{description}, now())
+	</insert>
+
+	<update id="update" parameterType="Artist">
+		update artist
+		<set>
+			description = #{description}
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="queryCount" parameterType="PageCondition" resultType="long">
+		select
+		count(*)
+		from artist
+		<if test="keyword != null">
+			where name like CONCAT('%',#{keyword},'%')
+		</if>
+	</select>
+
+	<select id="queryList" parameterType="PageCondition" resultMap="ArtistResult">
+		select
+		*
+		from artist
+		<if test="keyword != null">
+			where name like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="orderProperty != null">
+			order by ${orderProperty} ${orderDirection}
+		</if>
+		limit #{startIndex}, #{number}
+	</select>
+
+	<select id="queryById" parameterType="Long" resultMap="ArtistResult">
+		select
+		*
+		from artist
+		where id = #{id}
+	</select>
+
+</mapper>

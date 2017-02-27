@@ -10,6 +10,7 @@ import com.xiaoma.entity.shared.MusicLibrary;
 public class Artist extends BasePojo {
 
     private String name;
+    private String description;
     private MusicLibrary library;
     private List<Album> albumList = new ArrayList<Album>();
 
@@ -21,12 +22,28 @@ public class Artist extends BasePojo {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public MusicLibrary getLibrary() {
         return library;
     }
 
     public void setLibrary(MusicLibrary library) {
         this.library = library;
+    }
+
+    public List<Album> getAlbumList() {
+        return albumList;
+    }
+
+    public void setAlbumList(List<Album> albumList) {
+        this.albumList = albumList;
     }
 
     public void addAlbum(Album album) {
@@ -67,7 +84,7 @@ public class Artist extends BasePojo {
 
     @Override
     public String toString() {
-        return "Artist [id=" + super.getId() + ", name=" + name + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
+        return "Artist [id=" + super.getId() + ", name=" + name + ", description=" + description + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

@@ -58,6 +58,31 @@
 			</tr>
 	        <tr class="authorities">
 				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">歌手</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="artist" name="authorities" value="ROLE_ARTIST" [#if role.authorityList?contains("ROLE_ARTIST")]checked[/#if] />歌手管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet artist">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ARTIST_ADD" [#if role.authorityList?contains("ROLE_ARTIST_ADD")]checked[/#if] />添加歌手
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ARTIST_EDIT" [#if role.authorityList?contains("ROLE_ARTIST_EDIT")]checked[/#if] />编辑歌手
+						</label>
+					</span>
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
 					<a href="javascript:;" class="selectAll" title="全选此组权限">管理员</a>
 				</th>
 				<td>

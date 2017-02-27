@@ -42,6 +42,13 @@
 	        <th>
 	            <div id="nav" class="nav">
 	                <ul>
+		                <@security.authorize access="hasAnyRole('ROLE_ARTIST')">
+							<li><a href="#resource">资源</a></li>
+						</@security.authorize>
+	                </ul>
+	            </div>
+	            <div id="nav" class="nav">
+	                <ul>
 		                <@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE','ROLE_CONFIG')">
 							<li><a href="#system">系统</a></li>
 						</@security.authorize>
@@ -57,6 +64,16 @@
 	    </tr>
 	    <tr>
 	        <td id="menu" class="menu">
+	        	<dl id="resource">
+	        		<@security.authorize access="hasAnyRole('ROLE_ARTIST')">
+						<dt>资源管理</dt>
+				    </@security.authorize>
+					<@security.authorize access="hasRole('ROLE_ARTIST')">
+						<dd>
+							<a href="artist/list" target="iframe">歌手管理</a>
+					    </dd>
+				    </@security.authorize>
+				</dl>
 	        	<dl id="system">
 					<@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE')">
 						<dt>系统管理</dt>

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Album extends BasePojo {
 
     private String title;
+    private String description;
     private Artist artist;
     private List<Music> musicList;
 
@@ -16,6 +17,14 @@ public class Album extends BasePojo {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Artist getArtist() {
@@ -68,7 +77,7 @@ public class Album extends BasePojo {
 
     @Override
     public String toString() {
-        return "Album [id=" + super.getId() + ", title=" + title + ", musicList=" + musicList + ", createDate=" + super.getCreateDate() + "]";
+        return "Album [id=" + super.getId() + ", title=" + title + ", description=" + description + ", musicList=" + musicList + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

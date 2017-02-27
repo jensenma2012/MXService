@@ -4,11 +4,13 @@
 	<resultMap id="AlbumResult" type="Album">
 		<id property="id" column="album_id" />
 		<result property="title" column="album_title" />
+		<result property="description" column="album_description" />
 		<result property="createDate" column="album_createDate" />
 
 		<association property="artist" column="artist_id" javaType="Artist">
 			<id property="id" column="artist_id" />
 			<result property="name" column="artist_name" />
+			<result property="description" column="artist_description" />
 			<result property="createDate" column="artist_createDate" />
 		</association>
 
@@ -25,9 +27,11 @@
 		select
 		album.id as album_id,
 		album.title as album_title,
+		album.description as album_description,
 		album.createDate as album_createDate,
 		artist.id as artist_id,
 		artist.name as artist_name,
+		artist.description as artist_description,
 		artist.createDate as artist_createDate,
 		music.id as music_id,
 		music.title as music_title,
