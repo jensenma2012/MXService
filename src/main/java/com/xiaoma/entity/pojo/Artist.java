@@ -3,15 +3,32 @@ package com.xiaoma.entity.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.apache.commons.lang3.StringUtils;
 
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.shared.MusicLibrary;
 
+@Entity
+@Table(name = "artist")
 public class Artist extends BasePojo {
 
+    @FieldDesc(name = "name", desc = "歌手名")
+    @Column(name = "name", nullable = false, length = 64)
     private String name;
+
+    @FieldDesc(name = "description", desc = "歌手描述")
+    @Column(name = "description", length = 255)
     private String description;
+
+    @Transient
     private MusicLibrary library;
+
+    @Transient
     private List<Album> albumList = new ArrayList<Album>();
 
     public String getName() {
@@ -30,20 +47,20 @@ public class Artist extends BasePojo {
         this.description = description;
     }
 
-    public MusicLibrary getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(MusicLibrary library) {
-        this.library = library;
-    }
-
     public List<Album> getAlbumList() {
         return albumList;
     }
 
     public void setAlbumList(List<Album> albumList) {
         this.albumList = albumList;
+    }
+
+    public MusicLibrary getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(MusicLibrary library) {
+        this.library = library;
     }
 
     public void addAlbum(Album album) {
@@ -84,7 +101,7 @@ public class Artist extends BasePojo {
 
     @Override
     public String toString() {
-        return "Artist [id=" + super.getId() + ", name=" + name + ", description=" + description + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
+        return "Artist [id=" + super.getId() + ", name=" + name + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

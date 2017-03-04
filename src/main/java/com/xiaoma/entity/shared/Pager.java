@@ -3,7 +3,7 @@ package com.xiaoma.entity.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xiaoma.entity.pojo.PageCondition;
+import com.xiaoma.entity.annotation.FieldDesc;
 
 public class Pager<T> {
 
@@ -17,7 +17,13 @@ public class Pager<T> {
 
     private long pageCount = 0;// 总页数
 
-    private String keyword;// 查找关键字
+    private int startIndex = 0;
+
+    private List<FieldDesc> searchFields = new ArrayList<FieldDesc>();
+
+    private String fieldName;// 查找关键字
+
+    private String fieldValue;// 查找关键字
 
     private String orderProperty;// 排序字段
 
@@ -70,12 +76,37 @@ public class Pager<T> {
         this.pageCount = pageCount;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public int getStartIndex() {
+        startIndex = (pageNumber - 1) * pageSize;
+        return startIndex;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    public List<FieldDesc> getSearchFields() {
+        return searchFields;
+    }
+
+    public void setSearchFields(List<FieldDesc> searchFields) {
+        this.searchFields = searchFields;
+    }
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public String getFieldValue() {
+        return fieldValue;
+    }
+
+    public void setFieldValue(String fieldValue) {
+        this.fieldValue = fieldValue;
     }
 
     public List<T> getResult() {
@@ -100,10 +131,6 @@ public class Pager<T> {
 
     public void setOrderDirection(String orderDirection) {
         this.orderDirection = orderDirection;
-    }
-
-    public PageCondition getCondition() {
-        return new PageCondition(keyword, (pageNumber - 1) * pageSize, pageSize, orderProperty, orderDirection);
     }
 
 }

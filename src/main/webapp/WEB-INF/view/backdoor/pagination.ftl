@@ -1,34 +1,34 @@
 <input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize}" />
 <input type="hidden" id="orderProperty" name="orderProperty" value="${page.orderProperty}" />
 <input type="hidden" id="orderDirection" name="orderDirection" value="${page.orderDirection}" />
-<#if (page.pageCount > 1)>
+[#if page.pageCount>1]
 	<div class="pagination">
-		<#if (page.pageNumber == 1)>
+		[#if page.pageNumber==1]
 			<span class="firstPage">&nbsp;</span>
-		<#else>
+		[#else]
 			<a title="首页" class="firstPage" id="onePage" href="javascript: $.pageSkip(1);">&nbsp;</a>
-		</#if>
+		[/#if]
 
-		<#if (page.pageNumber > 1)>
+		[#if page.pageNumber>1]
 			<a title="上一页" class="previousPage" href="javascript: $.pageSkip(${page.pageNumber}-1);">&nbsp;</a>
-		<#else>
+		[#else]
 			<span class="previousPage">&nbsp;</span>
-		</#if>
+		[/#if]
 
-		<#if (page.pageNumber < page.pageCount)>
+		[#if page.pageNumber<page.pageCount]
 			<a title="下一页" class="nextPage" href="javascript: $.pageSkip(${page.pageNumber}+1);">&nbsp;</a>
-		<#else>
+		[#else]
 			<span class="nextPage">&nbsp;</span>
-		</#if>
+		[/#if]
 
-		<#if (page.pageNumber == page.pageCount)>
+		[#if page.pageNumber==page.pageCount]
 			<span class="lastPage">&nbsp;</span>
-		<#else>
+		[#else]
 			<a title="末尾" class="lastPage" href="javascript: $.pageSkip(${page.pageCount});">&nbsp;</a>
-		</#if>
+		[/#if]
 		
 		<span class="pageSkip">
 			共${page.pageCount}页  到第<input id="pageNumber" name="pageNumber" value=${page.pageNumber} maxlength="9" onpaste="return false;" />页<button type="submit">&nbsp;</button>
 		</span>
 	</div>
-</#if>
+[/#if]

@@ -1,9 +1,24 @@
 package com.xiaoma.entity.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.xiaoma.entity.annotation.FieldDesc;
+
+@Entity
+@Table(name = "config")
 public class Config extends BasePojo {
 
+    @FieldDesc(name = "key", desc = "配置key")
+    @Column(name = "[key]", nullable = false, length = 64)
     private String key;
+
+    @Column(name = "[value]", nullable = false, length = 255)
     private String value;
+
+    @FieldDesc(name = "description", desc = "配置描述")
+    @Column(name = "description", length = 255)
     private String description;
 
     public String getKey() {

@@ -38,6 +38,11 @@
 		<security:intercept-url pattern="/backdoor/config/update" access="hasRole('ROLE_CONFIG_EDIT')" />
 		<security:intercept-url pattern="/backdoor/config/refresh" access="hasRole('ROLE_CONFIG_REFRESH')" />
 		<security:intercept-url pattern="/backdoor/config/delete" access="hasRole('ROLE_CONFIG_DELETE')" />
+		<security:intercept-url pattern="/backdoor/artist/list" access="hasRole('ROLE_ARTIST')" />
+		<security:intercept-url pattern="/backdoor/artist/add" access="hasRole('ROLE_ARTIST_ADD')" />
+		<security:intercept-url pattern="/backdoor/artist/save" access="hasRole('ROLE_ARTIST_ADD')" />
+		<security:intercept-url pattern="/backdoor/artist/edit" access="hasRole('ROLE_ARTIST_EDIT')" />
+		<security:intercept-url pattern="/backdoor/artist/update" access="hasRole('ROLE_ARTIST_EDIT')" />
 		<security:intercept-url pattern="/backdoor/**" access="hasRole('ROLE_BASE')" />
 	</security:http>
 

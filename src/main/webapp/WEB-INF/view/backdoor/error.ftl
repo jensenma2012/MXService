@@ -23,9 +23,9 @@
 		<div class="error">
 			<dl>
 				<dt>对不起，您的操作出现错误！</dt>
-				<#if content??>
+				[#if content??]
 					<dd>${content}</dd>
-				</#if>
+				[/#if]
 				<dd>
 					<a href="javascript:;" onclick="window.history.back(); return false;">返回上一页</a>
 				</dd>

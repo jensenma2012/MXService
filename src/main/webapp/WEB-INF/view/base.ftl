@@ -61,8 +61,7 @@
 		<!-- End Modal section -->
 		
 		<!-- Start Home-header section -->
-		<@block name="content">
-		</@block>
+		[@block name="content" /]
 		<!-- End Home-header section -->
 
 		<!-- Start Footer section -->

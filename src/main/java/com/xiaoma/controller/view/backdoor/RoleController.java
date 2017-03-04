@@ -11,14 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.xiaoma.entity.pojo.PageCondition;
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.Role;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.RoleService;
 
 @Controller
+@SessionAttributes("role")
 @RequestMapping("/backdoor/role/")
 public class RoleController extends BaseController {
 
@@ -32,12 +35,13 @@ public class RoleController extends BaseController {
         LOGGER.info("accessing the role list page");
 
         try {
-            PageCondition condition = pager.getCondition();
-            long totalCount = roleService.queryCount(condition);
-            List<Role> roles = roleService.queryList(condition);
+            long totalCount = roleService.queryCount(pager);
+            List<Role> roles = roleService.queryList(pager);
+            List<FieldDesc> searchFields = roleService.getSearchFields();
 
             pager.setTotalCount(totalCount);
             pager.setResult(roles);
+            pager.setSearchFields(searchFields);
             model.addAttribute("page", pager);
         } catch (Exception e) {
             LOGGER.error("error when fetching role list", e);
@@ -83,10 +87,11 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, Role role, String[] authorities) {
+    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Role role, String[] authorities) {
         try {
             role.setAuthorities(Arrays.asList(authorities));
             roleService.update(role);
+            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/role/list";
         } catch (Exception e) {

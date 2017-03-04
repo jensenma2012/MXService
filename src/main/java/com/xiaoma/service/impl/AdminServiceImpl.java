@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.AdminDAO;
+import com.xiaoma.dao.BaseDAO;
 import com.xiaoma.entity.pojo.Admin;
 import com.xiaoma.entity.pojo.Role;
-import com.xiaoma.mybatis.mapper.AdminMapper;
-import com.xiaoma.mybatis.mapper.BaseMapper;
 import com.xiaoma.service.AdminService;
 
 @Service("adminService")
@@ -32,15 +32,15 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements UserDeta
 
     @Resource
     @Override
-    public void setMapper(BaseMapper<Admin> mapper) {
-        super.setMapper(mapper);
+    public void setDAO(BaseDAO<Admin> dao) {
+        super.setDAO(dao);
     }
 
     @Override
     public Admin loadUserByUsername(String username) throws UsernameNotFoundException {
         Admin admin = null;
         try {
-            admin = ((AdminMapper) this.getMapper()).queryByUsername(username);
+            admin = ((AdminDAO) super.getDAO()).queryByUsername(username);
         } catch (Exception e) {
             throw new UsernameNotFoundException("管理员[" + username + "]信息获取失败!");
         }

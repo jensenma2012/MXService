@@ -4,8 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.BaseDAO;
 import com.xiaoma.entity.pojo.Artist;
-import com.xiaoma.mybatis.mapper.BaseMapper;
 import com.xiaoma.service.ArtistService;
 
 @Service
@@ -13,8 +13,8 @@ public class ArtistServiceImpl extends BaseServiceImpl<Artist> implements Artist
 
     @Resource
     @Override
-    public void setMapper(BaseMapper<Artist> mapper) {
-        super.setMapper(mapper);
+    public void setDAO(BaseDAO<Artist> dao) {
+        super.setDAO(dao);
     }
 
 }

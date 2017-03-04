@@ -1,11 +1,12 @@
-package com.xiaoma.service;
+package com.xiaoma.dao;
 
 import java.util.List;
 
 import com.xiaoma.entity.annotation.FieldDesc;
+import com.xiaoma.entity.pojo.BasePojo;
 import com.xiaoma.entity.shared.Pager;
 
-public interface BaseService<T> {
+public interface BaseDAO<T extends BasePojo> {
 
     public void save(T t) throws Exception;
 

@@ -1,4 +1,4 @@
-<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
+[#assign security=JspTaglibs["http://www.springframework.org/security/tags"] /]
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -25,25 +25,25 @@
 	</div>
 	<form id="listForm" action="list" method="get">
 		<div class="bar">
-			<@security.authorize access="hasRole('ROLE_CONFIG_ADD')">
+			[@security.authorize access="hasRole('ROLE_CONFIG_ADD')"]
 				<a href="add" class="iconButton">
 					<span class="addIcon">&nbsp;</span>添加
 				</a>
-			</@security.authorize>
+			[/@security.authorize]
 			<div class="buttonWrap">
-				<@security.authorize access="hasRole('ROLE_CONFIG_DELETE')">
+				[@security.authorize access="hasRole('ROLE_CONFIG_DELETE')"]
 					<a href="javascript:;" id="deleteButton" class="iconButton disabled">
 						<span class="deleteIcon">&nbsp;</span>删除
 					</a>
-				</@security.authorize>
+				[/@security.authorize]
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
-				<@security.authorize access="hasRole('ROLE_CONFIG_REFRESH')">
+				[@security.authorize access="hasRole('ROLE_CONFIG_REFRESH')"]
 					<a href="javascript:;" id="refreshConfigButton" class="iconButton">
 						<span class="upIcon">&nbsp;</span>同步
 					</a>
-				</@security.authorize>
+				[/@security.authorize]
 				<div class="menuWrap">
 					<a href="javascript:;" id="pageSizeSelect" class="button">
 						每页显示<span class="arrow">&nbsp;</span>
@@ -58,8 +58,13 @@
 				</div>
 			</div>
 			<div class="menuWrap">
-				<span class="arrow">配置key：</span>
-				<input type="text" class="text" name="keyword" value="${page.keyword}"/>
+				<select name="fieldName" class="select">
+					<option value="">--请选择--</option>
+					[#list pager.searchFields as field]
+						<option value="${field.name()!}" [#if pager.fieldName?? && pager.fieldName==field.name()]selected[/#if]>${field.desc()!}</option>
+					[/#list]
+				</select>
+				<input type="text" class="text" name="fieldValue" value="${page.fieldValue}"/>
 				<input type="submit" class="button" value="查询" />
 			</div>
 		</div>
@@ -69,43 +74,43 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="config.key">配置key</a>
+					<a href="javascript:" class="sort" name="key">配置key</a>
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="config.description">配置描述</a>
+					<a href="javascript:" class="sort" name="description">配置描述</a>
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="config.createDate">创建时间</a>
+					<a href="javascript:" class="sort" name="createDate">创建时间</a>
 				</th>
-				<@security.authorize access="hasRole('ROLE_CONFIG_EDIT')">
+				[@security.authorize access="hasRole('ROLE_CONFIG_EDIT')"]
 					<th>	
 						<span>操作</span>
 					</th>
-				</@security.authorize>
+				[/@security.authorize]
 			</tr>
-			<#list page.result as list>
-			<tr>
-				<td>
-					<input type="checkbox" name="ids" value="${list.id}"/>
-				</td>
-				<td>
-					${list.key}
-				</td>
-				<td>
-					${list.description}
-				</td>
-				<td>
-					${(list.createDate?string("yyyy-MM-dd HH:mm:ss"))!"-"}
-				</td>
-				<@security.authorize access="hasRole('ROLE_CONFIG_EDIT')">
+			[#list page.result as list]
+				<tr>
 					<td>
-						<a href="edit?id=${list.id}">[编辑]</a>
+						<input type="checkbox" name="ids" value="${list.id}"/>
 					</td>
-				</@security.authorize>
-			</tr>
-			</#list>
+					<td>
+						${list.key}
+					</td>
+					<td>
+						${list.description}
+					</td>
+					<td>
+						${(list.createDate?string("yyyy-MM-dd HH:mm:ss"))!"-"}
+					</td>
+					[@security.authorize access="hasRole('ROLE_CONFIG_EDIT')"]
+						<td>
+							<a href="edit?id=${list.id}">[编辑]</a>
+						</td>
+					[/@security.authorize]
+				</tr>
+			[/#list]
 		</table>
-		<#include "/backdoor/pagination.ftl">
+		[#include "/backdoor/pagination.ftl"]
 	</form>
 
 	<!-- Scripts -->

@@ -1,4 +1,4 @@
-<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
+[#assign security=JspTaglibs["http://www.springframework.org/security/tags"] /]
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -42,21 +42,21 @@
 	        <th>
 	            <div id="nav" class="nav">
 	                <ul>
-		                <@security.authorize access="hasAnyRole('ROLE_ARTIST')">
+		                [@security.authorize access="hasAnyRole('ROLE_ARTIST')"]
 							<li><a href="#resource">资源</a></li>
-						</@security.authorize>
+						[/@security.authorize]
 	                </ul>
 	            </div>
 	            <div id="nav" class="nav">
 	                <ul>
-		                <@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE','ROLE_CONFIG')">
+		                [@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE','ROLE_CONFIG')"]
 							<li><a href="#system">系统</a></li>
-						</@security.authorize>
+						[/@security.authorize]
 	                </ul>
 	            </div>
 	            <div class="link"></div>
 	            <div class="link">
-	                <strong><@security.authentication property="principal.username" /></strong> 您好!
+	                <strong>[@security.authentication property="principal.username" /]</strong> 您好!
 	                <a href="admin/modify" target="iframe">[密码重置]</a>
 	                <a href="logout" target="_top">[注销]</a>
 	            </div>
@@ -65,37 +65,37 @@
 	    <tr>
 	        <td id="menu" class="menu">
 	        	<dl id="resource">
-	        		<@security.authorize access="hasAnyRole('ROLE_ARTIST')">
+	        		[@security.authorize access="hasAnyRole('ROLE_ARTIST')"]
 						<dt>资源管理</dt>
-				    </@security.authorize>
-					<@security.authorize access="hasRole('ROLE_ARTIST')">
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_ARTIST')"]
 						<dd>
 							<a href="artist/list" target="iframe">歌手管理</a>
 					    </dd>
-				    </@security.authorize>
+				    [/@security.authorize]
 				</dl>
 	        	<dl id="system">
-					<@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE')">
+					[@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE')"]
 						<dt>系统管理</dt>
-				    </@security.authorize>
-					<@security.authorize access="hasRole('ROLE_ADMIN')">
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_ADMIN')"]
 						<dd>
 							<a href="admin/list" target="iframe">管理员管理</a>
 					    </dd>
-				    </@security.authorize>
-					<@security.authorize access="hasRole('ROLE_ROLE')">
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_ROLE')"]
 						<dd>
 							<a href="role/list" target="iframe">权限管理</a>
 					    </dd>
-				    </@security.authorize>
-					<@security.authorize access="hasAnyRole('ROLE_CONFIG')">
+				    [/@security.authorize]
+					[@security.authorize access="hasAnyRole('ROLE_CONFIG')"]
 						<dt>配置项管理</dt>
-				    </@security.authorize>
-					<@security.authorize access="hasRole('ROLE_CONFIG')">
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_CONFIG')"]
 						<dd>
 							<a href="config/list" target="iframe">配置项管理</a>
 					    </dd>
-				    </@security.authorize>
+				    [/@security.authorize]
 				</dl>
 	        </td>
 	        <td style="height: 95%;">

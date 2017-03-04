@@ -12,9 +12,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.BaseDAO;
 import com.xiaoma.entity.pojo.Album;
 import com.xiaoma.entity.pojo.Artist;
-import com.xiaoma.mybatis.mapper.BaseMapper;
 import com.xiaoma.service.MusicService;
 
 @Service
@@ -26,8 +26,8 @@ public class MusicServiceImpl extends BaseServiceImpl<Album> implements MusicSer
 
     @Resource
     @Override
-    public void setMapper(BaseMapper<Album> mapper) {
-        super.setMapper(mapper);
+    public void setDAO(BaseDAO<Album> dao) {
+        super.setDAO(dao);
     }
 
     @PostConstruct

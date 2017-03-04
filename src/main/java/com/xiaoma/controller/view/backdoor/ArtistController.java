@@ -10,14 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.Artist;
-import com.xiaoma.entity.pojo.PageCondition;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.ArtistService;
 
 @Controller
+@SessionAttributes("artist")
 @RequestMapping("/backdoor/artist/")
 public class ArtistController extends BaseController {
 
@@ -31,12 +34,13 @@ public class ArtistController extends BaseController {
         LOGGER.info("accessing the artist list page");
 
         try {
-            PageCondition condition = pager.getCondition();
-            long totalCount = artistService.queryCount(condition);
-            List<Artist> artists = artistService.queryList(condition);
+            long totalCount = artistService.queryCount(pager);
+            List<Artist> artists = artistService.queryList(pager);
+            List<FieldDesc> searchFields = artistService.getSearchFields();
 
             pager.setTotalCount(totalCount);
             pager.setResult(artists);
+            pager.setSearchFields(searchFields);
             model.addAttribute("page", pager);
         } catch (Exception e) {
             LOGGER.error("error when fetching artist list", e);
@@ -81,9 +85,10 @@ public class ArtistController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, Artist artist) {
+    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Artist artist) {
         try {
             artistService.update(artist);
+            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/artist/list";
         } catch (Exception e) {

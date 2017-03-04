@@ -4,8 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.BaseDAO;
 import com.xiaoma.entity.pojo.Role;
-import com.xiaoma.mybatis.mapper.BaseMapper;
 import com.xiaoma.service.RoleService;
 
 @Service
@@ -13,8 +13,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
     @Resource
     @Override
-    public void setMapper(BaseMapper<Role> mapper) {
-        super.setMapper(mapper);
+    public void setDAO(BaseDAO<Role> dao) {
+        super.setDAO(dao);
     }
 
 }

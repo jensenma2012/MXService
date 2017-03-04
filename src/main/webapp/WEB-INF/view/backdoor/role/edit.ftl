@@ -36,7 +36,6 @@
 <body>
 	<div class="path">编辑权限</div>
 	<form id="inputForm" action="update" method="post">
-		<input type="hidden" name="id" value="${role.id}" />
 	    <input type="hidden" name="authorities" value="ROLE_BASE" />
 		<table class="input">
 			<tr>

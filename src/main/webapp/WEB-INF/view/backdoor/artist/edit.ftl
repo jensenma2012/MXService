@@ -20,7 +20,6 @@
 <body>
 	<div class="path">编辑歌手</div>
 	<form id="inputForm" action="update" method="post">
-		<input type="hidden" name="id" value="${artist.id}" />
 		<table class="input">
 			<tr>
 				<th>歌手名:</th>

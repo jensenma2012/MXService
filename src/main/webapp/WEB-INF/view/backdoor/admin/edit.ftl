@@ -20,7 +20,6 @@
 <body>
 	<div class="path">编辑管理员</div>
 	<form id="inputForm" action="update" method="post">
-		<input type="hidden" name="id" value="${admin.id}" />
 		<table class="input">
 			<tr>
 				<th>用户名:

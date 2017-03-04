@@ -2,20 +2,48 @@ package com.xiaoma.entity.pojo;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.xiaoma.entity.annotation.FieldDesc;
+
+@Entity
+@Table(name = "admin")
 public class Admin extends BasePojo implements UserDetails {
 
     private static final long serialVersionUID = -2860423937656886413L;
 
+    @FieldDesc(name = "username", desc = "用户名")
+    @Column(name = "username", nullable = false, length = 64)
     private String username;
+
+    @Column(name = "password", nullable = false, length = 64)
     private String password;
+
+    @Column(name = "is_account_non_expired", nullable = false)
     private boolean accountNonExpired;
+
+    @Column(name = "is_account_non_locked", nullable = false)
     private boolean accountNonLocked;
-    private boolean credentialsNonExpired;
+
+    @Column(name = "is_account_enabled", nullable = false)
     private boolean enabled;
+
+    @Column(name = "is_credentials_non_expired", nullable = false)
+    private boolean credentialsNonExpired;
+
+    @OneToOne
+    @JoinColumn(name = "role_id")
     private Role role;
+
+    @Transient
     private List<GrantedAuthority> authorities;
 
     public String getUsername() {
@@ -50,20 +78,20 @@ public class Admin extends BasePojo implements UserDetails {
         this.accountNonLocked = accountNonLocked;
     }
 
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        this.credentialsNonExpired = credentialsNonExpired;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     public Role getRole() {
@@ -84,7 +112,7 @@ public class Admin extends BasePojo implements UserDetails {
 
     @Override
     public String toString() {
-        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked=" + accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled + ", role=" + role + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
+        return "Admin [id=" + super.getId() + ", username=" + username + ", password=" + password + ", accountNonExpired=" + accountNonExpired + ", accountNonLocked=" + accountNonLocked + ", enabled=" + enabled + ", credentialsNonExpired=" + credentialsNonExpired + ", role=" + role + ", authorities=" + authorities + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

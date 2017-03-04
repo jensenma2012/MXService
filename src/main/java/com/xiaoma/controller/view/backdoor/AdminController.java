@@ -10,16 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.Admin;
-import com.xiaoma.entity.pojo.PageCondition;
 import com.xiaoma.entity.pojo.Role;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.AdminService;
 import com.xiaoma.service.RoleService;
 
 @Controller
+@SessionAttributes("admin")
 @RequestMapping("/backdoor/admin/")
 public class AdminController extends BaseController {
 
@@ -63,12 +66,13 @@ public class AdminController extends BaseController {
         LOGGER.info("accessing the admin list page");
 
         try {
-            PageCondition condition = pager.getCondition();
-            long totalCount = adminService.queryCount(condition);
-            List<Admin> admins = adminService.queryList(condition);
+            long totalCount = adminService.queryCount(pager);
+            List<Admin> admins = adminService.queryList(pager);
+            List<FieldDesc> searchFields = adminService.getSearchFields();
 
             pager.setTotalCount(totalCount);
             pager.setResult(admins);
+            pager.setSearchFields(searchFields);
             model.addAttribute("page", pager);
         } catch (Exception e) {
             LOGGER.error("error when fetching admin list", e);
@@ -130,9 +134,10 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, Admin admin) {
+    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Admin admin) {
         try {
             adminService.update(admin);
+            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/admin/list";
         } catch (Exception e) {

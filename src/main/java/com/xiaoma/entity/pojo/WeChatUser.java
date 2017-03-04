@@ -1,8 +1,21 @@
 package com.xiaoma.entity.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.xiaoma.entity.annotation.FieldDesc;
+
+@Entity
+@Table(name = "wechat_user")
 public class WeChatUser extends BasePojo {
 
+    @FieldDesc(name = "username", desc = "微信id")
+    @Column(name = "username", nullable = false, length = 64)
     private String username;
+
+    @FieldDesc(name = "alias", desc = "用户别名")
+    @Column(name = "alias", length = 64)
     private String alias;
 
     public String getUsername() {

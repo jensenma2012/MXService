@@ -2,14 +2,28 @@ package com.xiaoma.entity.pojo;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.StringUtils;
 
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.util.JsonUtil;
 
+@Entity
+@Table(name = "role")
 public class Role extends BasePojo {
 
+    @FieldDesc(name = "name", desc = "权限名")
+    @Column(name = "name", nullable = false, length = 64)
     private String name;
+
+    @Column(name = "authority_list", nullable = false, length = 255)
     private String authorityList;
+
+    @FieldDesc(name = "description", desc = "权限描述")
+    @Column(name = "description", length = 255)
     private String description;
 
     public String getName() {

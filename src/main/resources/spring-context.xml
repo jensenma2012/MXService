@@ -2,13 +2,13 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPaths" value="/WEB-INF/view/" />
@@ -30,9 +30,9 @@
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="base" value="#{servletContext.contextPath}" />
-				<entry key="block" value-ref="block" />  
-	            <entry key="override" value-ref="override" />  
-	            <entry key="extends" value-ref="extends" />  
+				<entry key="block" value-ref="block" />
+				<entry key="override" value-ref="override" />
+				<entry key="extends" value-ref="extends" />
 			</map>
 		</property>
 	</bean>
@@ -49,19 +49,41 @@
 		<property name="filters" value="${jdbc.filters}" />
 	</bean>
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:mappings/*.xml" />
-		<property name="typeAliasesPackage" value="com.xiaoma.entity.pojo" />
+		<property name="packagesToScan" value="com.xiaoma.entity.pojo" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
 	</bean>
 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.xiaoma.mybatis.mapper" />
-	</bean>
+	<tx:annotation-driven />
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="query*" propagation="NOT_SUPPORTED" rollback-for="Exception" read-only="true" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="allDatabaseMethod" expression="execution(* com.xiaoma.dao.*.*(..))" />
+		<aop:advisor pointcut-ref="allDatabaseMethod" advice-ref="txAdvice" />
+	</aop:config>
+
+	<context:component-scan base-package="com.xiaoma.dao" />
 
 	<context:component-scan base-package="com.xiaoma.wechat.handler" />
 

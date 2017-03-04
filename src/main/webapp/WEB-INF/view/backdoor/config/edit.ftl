@@ -20,7 +20,6 @@
 <body>
 	<div class="path">编辑配置项</div>
 	<form id="inputForm" action="update" method="post">
-		<input type="hidden" name="id" value="${config.id}" />
 		<table class="input">
 			<tr>
 				<th><span class="requiredField">*</span>配置key:</th>

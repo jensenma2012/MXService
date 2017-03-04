@@ -10,8 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.BaseDAO;
 import com.xiaoma.entity.pojo.Config;
-import com.xiaoma.mybatis.mapper.BaseMapper;
 import com.xiaoma.service.ConfigService;
 
 @Service
@@ -23,8 +23,8 @@ public class ConfigServiceImpl extends BaseServiceImpl<Config> implements Config
 
     @Resource
     @Override
-    public void setMapper(BaseMapper<Config> mapper) {
-        super.setMapper(mapper);
+    public void setDAO(BaseDAO<Config> dao) {
+        super.setDAO(dao);
     }
 
     @PostConstruct

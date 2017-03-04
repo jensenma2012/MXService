@@ -1,10 +1,28 @@
 package com.xiaoma.entity.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.xiaoma.entity.annotation.FieldDesc;
+
+@Entity
+@Table(name = "wechat_history")
 public class WeChatHistory extends BasePojo {
 
+    @FieldDesc(name = "type", desc = "消息类型")
+    @Column(name = "type", nullable = false, length = 64)
     private String type;
+
+    @FieldDesc(name = "content", desc = "消息内容")
+    @Column(name = "content", nullable = false, length = 255)
     private String content;
-    private Long userId;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private WeChatUser wechatUser;
 
     public String getType() {
         return type;
@@ -22,17 +40,17 @@ public class WeChatHistory extends BasePojo {
         this.content = content;
     }
 
-    public Long getUserId() {
-        return userId;
+    public WeChatUser getWechatUser() {
+        return wechatUser;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setWechatUser(WeChatUser wechatUser) {
+        this.wechatUser = wechatUser;
     }
 
     @Override
     public String toString() {
-        return "WeChatHistory [id=" + super.getId() + ", type=" + type + ", content=" + content + ", userId=" + userId + ", createDate=" + super.getCreateDate() + "]";
+        return "WeChatHistory [id=" + super.getId() + ", type=" + type + ", content=" + content + ", wechatUser=" + wechatUser + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

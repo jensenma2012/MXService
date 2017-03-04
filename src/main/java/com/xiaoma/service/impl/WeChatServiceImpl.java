@@ -9,13 +9,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.xiaoma.dao.WeChatHistoryDAO;
+import com.xiaoma.dao.WeChatUserDAO;
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.pojo.WeChatHistory;
 import com.xiaoma.entity.pojo.WeChatUser;
 import com.xiaoma.entity.request.WeChatMessage;
 import com.xiaoma.entity.response.WeChatResponse;
-import com.xiaoma.mybatis.mapper.WeChatHistoryMapper;
-import com.xiaoma.mybatis.mapper.WeChatUserMapper;
 import com.xiaoma.service.ConfigService;
 import com.xiaoma.service.WeChatService;
 import com.xiaoma.wechat.handler.WeChatHandler;
@@ -35,10 +35,10 @@ public class WeChatServiceImpl implements WeChatService {
     private ConfigService configService;
 
     @Resource
-    private WeChatUserMapper wechatUserMapper;
+    private WeChatUserDAO wechatUserDAO;
 
     @Resource
-    private WeChatHistoryMapper wechatHistoryMapper;
+    private WeChatHistoryDAO wechatHistoryDAO;
 
     @Resource
     private EchoHandler echoHandler;
@@ -69,7 +69,7 @@ public class WeChatServiceImpl implements WeChatService {
                 try {
                     WeChatUser wechatUser = new WeChatUser();
                     wechatUser.setUsername(username);
-                    wechatUserMapper.save(wechatUser);
+                    wechatUserDAO.save(wechatUser);
                 } catch (Exception e) {
                     LOGGER.error("error when saving user[" + username + "] to wechat_user", e);
                 }
@@ -80,9 +80,9 @@ public class WeChatServiceImpl implements WeChatService {
                 response.setContent("再见");
 
                 try {
-                    WeChatUser wechatUser = wechatUserMapper.queryByUsername(username);
+                    WeChatUser wechatUser = wechatUserDAO.queryByUsername(username);
                     if (wechatUser != null) {
-                        wechatUserMapper.delete(new Long[] { wechatUser.getId() });
+                        wechatUserDAO.delete(new Long[] { wechatUser.getId() });
                     }
                 } catch (Exception e) {
                     LOGGER.error("error when removing user[" + username + "] from wechat_user", e);
@@ -96,18 +96,18 @@ public class WeChatServiceImpl implements WeChatService {
             response = createResponse(username, message.getToUserName(), content);
 
             try {
-                WeChatUser wechatUser = wechatUserMapper.queryByUsername(username);
+                WeChatUser wechatUser = wechatUserDAO.queryByUsername(username);
                 if (wechatUser == null) {
                     wechatUser = new WeChatUser();
                     wechatUser.setUsername(username);
-                    wechatUserMapper.save(wechatUser);
+                    wechatUserDAO.save(wechatUser);
                 }
 
                 WeChatHistory wechatHistory = new WeChatHistory();
                 wechatHistory.setType(message.getMsgType());
                 wechatHistory.setContent(content);
-                wechatHistory.setUserId(wechatUser.getId());
-                wechatHistoryMapper.save(wechatHistory);
+                wechatHistory.setWechatUser(wechatUser);
+                wechatHistoryDAO.save(wechatHistory);
             } catch (Exception e) {
                 LOGGER.error("error when saving message[" + content + "] to wechat_history", e);
             }

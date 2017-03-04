@@ -2,55 +2,62 @@ package com.xiaoma.service.impl;
 
 import java.util.List;
 
-import com.xiaoma.entity.pojo.PageCondition;
-import com.xiaoma.mybatis.mapper.BaseMapper;
+import com.xiaoma.dao.BaseDAO;
+import com.xiaoma.entity.annotation.FieldDesc;
+import com.xiaoma.entity.pojo.BasePojo;
+import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.BaseService;
 
-public class BaseServiceImpl<T> implements BaseService<T> {
+public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
 
-    private BaseMapper<T> mapper;
+    private BaseDAO<T> dao;
 
-    public BaseMapper<T> getMapper() {
-        return mapper;
+    public BaseDAO<T> getDAO() {
+        return dao;
     }
 
-    public void setMapper(BaseMapper<T> mapper) {
-        this.mapper = mapper;
+    public void setDAO(BaseDAO<T> dao) {
+        this.dao = dao;
     }
 
     @Override
     public void save(T t) throws Exception {
-        mapper.save(t);
+        dao.save(t);
     }
 
     @Override
     public void update(T t) throws Exception {
-        mapper.update(t);
+        dao.update(t);
     }
 
     @Override
     public void delete(Long[] ids) throws Exception {
-        mapper.delete(ids);
+        dao.delete(ids);
     }
 
     @Override
     public List<T> queryAll() throws Exception {
-        return mapper.queryAll();
+        return dao.queryAll();
     }
 
     @Override
-    public long queryCount(PageCondition condition) throws Exception {
-        return mapper.queryCount(condition);
+    public long queryCount(Pager<T> pager) throws Exception {
+        return dao.queryCount(pager);
     }
 
     @Override
-    public List<T> queryList(PageCondition condition) throws Exception {
-        return mapper.queryList(condition);
+    public List<T> queryList(Pager<T> pager) throws Exception {
+        return dao.queryList(pager);
     }
 
     @Override
     public T queryById(Long id) throws Exception {
-        return mapper.queryById(id);
+        return dao.queryById(id);
+    }
+
+    @Override
+    public List<FieldDesc> getSearchFields() {
+        return dao.getSearchFields();
     }
 
 }

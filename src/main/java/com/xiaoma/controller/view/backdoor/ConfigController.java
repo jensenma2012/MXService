@@ -12,14 +12,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.Config;
-import com.xiaoma.entity.pojo.PageCondition;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.ConfigService;
 
 @Controller
+@SessionAttributes("config")
 @RequestMapping("/backdoor/config/")
 public class ConfigController extends BaseController {
 
@@ -33,12 +36,13 @@ public class ConfigController extends BaseController {
         LOGGER.info("accessing the config list page");
 
         try {
-            PageCondition condition = pager.getCondition();
-            long totalCount = configService.queryCount(condition);
-            List<Config> configs = configService.queryList(condition);
+            long totalCount = configService.queryCount(pager);
+            List<Config> configs = configService.queryList(pager);
+            List<FieldDesc> searchFields = configService.getSearchFields();
 
             pager.setTotalCount(totalCount);
             pager.setResult(configs);
+            pager.setSearchFields(searchFields);
             model.addAttribute("page", pager);
         } catch (Exception e) {
             LOGGER.error("error when fetching config list", e);
@@ -83,9 +87,10 @@ public class ConfigController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, Config config) {
+    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Config config) {
         try {
             configService.update(config);
+            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {
