@@ -50,9 +50,9 @@
 					</a>
 					<div class="popupMenu">
 						<ul id="pageSizeOption">
-							<li><a href="javascript:;"<#if page.pageSize == 10> class="current"</#if> val="10">10</a></li>
-							<li><a href="javascript:;"<#if page.pageSize == 20> class="current"</#if> val="20">20</a></li>
-							<li><a href="javascript:;"<#if page.pageSize == 100> class="current"</#if> val="50">50</a></li>
+							<li><a href="javascript:;"[#if page.pageSize == 10] class="current"[/#if] val="10">10</a></li>
+							<li><a href="javascript:;"[#if page.pageSize == 20] class="current"[/#if] val="20">20</a></li>
+							<li><a href="javascript:;"[#if page.pageSize == 50] class="current"[/#if] val="50">50</a></li>
 						</ul>
 					</div>
 				</div>
@@ -60,8 +60,8 @@
 			<div class="menuWrap">
 				<select name="fieldName" class="select">
 					<option value="">--请选择--</option>
-					[#list pager.searchFields as field]
-						<option value="${field.name()!}" [#if pager.fieldName?? && pager.fieldName==field.name()]selected[/#if]>${field.desc()!}</option>
+					[#list page.searchFields as field]
+						<option value="${field.name()!}" [#if page.fieldName?? && page.fieldName==field.name()]selected[/#if]>${field.desc()!}</option>
 					[/#list]
 				</select>
 				<input type="text" class="text" name="fieldValue" value="${page.fieldValue}"/>
