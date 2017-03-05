@@ -9,21 +9,25 @@ public class Pager<T> {
 
     public static final Integer MAX_PAGE_SIZE = 100;// 每页最大记录数限制
 
-    private int pageNumber = 1;// 当前页码
+    public static final Integer DEFAULT_PAGE_SIZE = 10;// 默认每页记录数
 
-    private int pageSize = 10;// 每页记录数
+    public static final Integer DEFAULT_PAGE_NUMBER = 1;// 默认页码
 
-    private long totalCount = 0;// 总记录数
+    private int pageNumber = DEFAULT_PAGE_NUMBER;// 当前页码
 
-    private long pageCount = 0;// 总页数
+    private int pageSize = DEFAULT_PAGE_SIZE;// 每页记录数
 
-    private int startIndex = 0;
+    private long totalCount;// 总记录数
 
-    private List<FieldDesc> searchFields = new ArrayList<FieldDesc>();
+    private long pageCount;// 总页数
 
-    private String fieldName;// 查找关键字
+    private int startIndex;// 记录查询起点
 
-    private String fieldValue;// 查找关键字
+    private List<FieldDesc> searchFields = new ArrayList<FieldDesc>();// 查询关键字列表
+
+    private String fieldName;// 关键字
+
+    private String fieldValue;// 关键字值
 
     private String orderProperty;// 排序字段
 

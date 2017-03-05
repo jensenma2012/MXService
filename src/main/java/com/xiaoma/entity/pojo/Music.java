@@ -2,6 +2,8 @@ package com.xiaoma.entity.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.xiaoma.entity.annotation.FieldDesc;
@@ -20,6 +22,10 @@ public class Music extends BasePojo {
 
     @Column(name = "filename", nullable = false, length = 64)
     private String filename;
+
+    @OneToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     public String getTitle() {
         return title;
@@ -43,6 +49,14 @@ public class Music extends BasePojo {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     @Override

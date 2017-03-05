@@ -32,8 +32,9 @@ public class ConfigController extends BaseController {
     private ConfigService configService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(ModelMap model, Pager<Config> pager) {
+    public String list(ModelMap model, SessionStatus sessionStatus, Pager<Config> pager) {
         LOGGER.info("accessing the config list page");
+        sessionStatus.setComplete();
 
         try {
             long totalCount = configService.queryCount(pager);
@@ -87,10 +88,9 @@ public class ConfigController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Config config) {
+    public String update(RedirectAttributes redirectAttributes, Config config) {
         try {
             configService.update(config);
-            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/config/list";
         } catch (Exception e) {

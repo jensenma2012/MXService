@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>管理员列表</title>
+	<title>专辑列表</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -21,16 +21,21 @@
 
 <body>
 	<div class="path">
-		 管理员列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
+		 专辑列表 <span>(共<span id="pageTotal">${page.totalCount}</span>条记录)</span>
 	</div>
 	<form id="listForm" action="list" method="get">
 		<div class="bar">
-			[@security.authorize access="hasRole('ROLE_ADMIN_ADD')"]
+			[@security.authorize access="hasRole('ROLE_ALBUM_ADD')"]
 				<a href="add" class="iconButton">
 					<span class="addIcon">&nbsp;</span>添加
 				</a>
 			[/@security.authorize]
 			<div class="buttonWrap">
+				[@security.authorize access="hasRole('ROLE_ALBUM_DELETE')"]
+					<a href="javascript:;" id="deleteButton" class="iconButton disabled">
+						<span class="deleteIcon">&nbsp;</span>删除
+					</a>
+				[/@security.authorize]
 				<a href="javascript:;" id="refreshButton" class="iconButton">
 					<span class="refreshIcon">&nbsp;</span>刷新
 				</a>
@@ -64,18 +69,18 @@
 					<input type="checkbox" id="selectAll" />
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="username">用户名</a>
+					<a href="javascript:" class="sort" name="title">专辑标题</a>
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="role.name">权限</a>
+					<a href="javascript:" class="sort" name="description">专辑描述</a>
 				</th>
 				<th>
-					<a href="javascript:" class="sort" name="enabled">是否启用</a>
+					<a href="javascript:" class="sort" name="artist.name">歌手</a>
 				</th>
 				<th>
 					<a href="javascript:" class="sort" name="createDate">创建时间</a>
 				</th>
-				[@security.authorize access="hasRole('ROLE_ADMIN_EDIT')"]
+				[@security.authorize access="hasRole('ROLE_ALBUM_EDIT')"]
 					<th>	
 						<span>操作</span>
 					</th>
@@ -87,18 +92,18 @@
 						<input type="checkbox" name="ids" value="${list.id}"/>
 					</td>
 					<td>
-						${list.username}
+						${list.title}
 					</td>
 					<td>
-						${list.role.name}
+						${list.description}
 					</td>
 					<td>
-						<span class="${list.enabled?then("trueIcon","falseIcon")}">&nbsp;</span>
+						${list.artist.name}
 					</td>
 					<td>
 						${(list.createDate?string("yyyy-MM-dd HH:mm:ss"))!"-"}
 					</td>
-					[@security.authorize access="hasRole('ROLE_ADMIN_EDIT')"]
+					[@security.authorize access="hasRole('ROLE_ALBUM_EDIT')"]
 						<td>
 							<a href="edit?id=${list.id}">[编辑]</a>
 						</td>

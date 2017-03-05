@@ -101,7 +101,7 @@ public class Artist extends BasePojo {
 
     @Override
     public String toString() {
-        return "Artist [id=" + super.getId() + ", name=" + name + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
+        return "Artist [id=" + super.getId() + ", name=" + name + ", description=" + description + ", albumList=" + albumList + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

@@ -100,7 +100,7 @@ public class Album extends BasePojo {
 
     @Override
     public String toString() {
-        return "Album [id=" + super.getId() + ", title=" + title + ", musicList=" + musicList + ", createDate=" + super.getCreateDate() + "]";
+        return "Album [id=" + super.getId() + ", title=" + title + ", description=" + description + ", musicList=" + musicList + ", createDate=" + super.getCreateDate() + "]";
     }
 
 }

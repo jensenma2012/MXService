@@ -47,7 +47,7 @@
 			<tr>
 				<th>权限描述:</th>
 				<td>
-					<input type="text" name="description" class="text" value="${role.description}" maxlength="255" />
+					<input type="text" name="description" class="text" value="${role.description}" maxlength="64" />
 				</td>
 			</tr>
 			<tr>
@@ -76,6 +76,62 @@
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="ROLE_ARTIST_EDIT" [#if role.authorityList?contains("ROLE_ARTIST_EDIT")]checked[/#if] />编辑歌手
+						</label>
+					</span>
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">专辑</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="album" name="authorities" value="ROLE_ALBUM" [#if role.authorityList?contains("ROLE_ALBUM")]checked[/#if] />专辑管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet album">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_ADD" [#if role.authorityList?contains("ROLE_ALBUM_ADD")]checked[/#if] />添加专辑
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_EDIT" [#if role.authorityList?contains("ROLE_ALBUM_EDIT")]checked[/#if] />编辑专辑
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_DELETE" [#if role.authorityList?contains("ROLE_ALBUM_DELETE")]checked[/#if] />删除专辑
+						</label>
+					</span>
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">歌曲</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="music" name="authorities" value="ROLE_MUSIC" [#if role.authorityList?contains("ROLE_MUSIC")]checked[/#if] />歌曲管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet music">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_ADD" [#if role.authorityList?contains("ROLE_MUSIC_ADD")]checked[/#if] />添加歌曲
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_EDIT" [#if role.authorityList?contains("ROLE_MUSIC_EDIT")]checked[/#if] />编辑歌曲
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_DELETE" [#if role.authorityList?contains("ROLE_MUSIC_DELETE")]checked[/#if] />删除歌曲
 						</label>
 					</span>
 				</td>
@@ -216,7 +272,7 @@
 			$inputForm.validate({
 				rules: {
 					description: {
-						maxlength:255
+						maxlength:64
 					}
 				},
 				messages: {

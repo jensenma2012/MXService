@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>添加管理员</title>
+	<title>添加歌曲</title>
 	<meta name="author" content="马老师" />
 	<meta name="keywords" content="马老师, malaoshi" />
 	<meta name="description" content="马老师 - 个人服务站后台管理" />
@@ -18,22 +18,34 @@
 </head>
 
 <body>
-	<div class="path">添加管理员</div>
+	<div class="path">添加歌曲</div>
 	<form id="inputForm" action="save" method="post">
 		<table class="input">
 			<tr>
-				<th><span class="requiredField">*</span>用户名:</th>
+				<th><span class="requiredField">*</span>歌曲标题:</th>
 				<td>
-					<input type="text" name="username" class="text" maxlength="64" />
+					<input type="text" name="title" class="text" maxlength="64" />
 				</td>
 			</tr>
 			<tr>
-				<th><span class="requiredField">*</span>权限:</th>
+				<th><span class="requiredField">*</span>歌曲描述:</th>
 				<td>
-					<select name="role.id">
+					<input type="text" name="description" class="text" maxlength="64" />
+				</td>
+			</tr>
+			<tr>
+				<th><span class="requiredField">*</span>歌曲:</th>
+				<td>
+					<input type="file" name="file" class="text" />
+				</td>
+			</tr>
+			<tr>
+				<th><span class="requiredField">*</span>专辑:</th>
+				<td>
+					<select name="album.id">
 						<option value="">--请选择--</option>
-						[#list roles as role]
-							<option value="${role.id!}">${role.name!}</option>
+						[#list albums as album]
+							<option value="${album.id!}">${album.title!}-${album.artist.name}</option>
 						[/#list]
 					</select>
 				</td>
@@ -61,11 +73,18 @@
 			var $inputForm = $("#inputForm");
 			$inputForm.validate({
 				rules: {
-					username: {
+					title: {
 						required:true,
 						maxlength:64
 					},
-					"role.id": {
+					description: {
+						required:true,
+						maxlength:64
+					},
+					file: {
+						required:true
+					},
+					"album.id": {
 						required:true
 					}
 				},

@@ -62,8 +62,9 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(ModelMap model, Pager<Admin> pager) {
+    public String list(ModelMap model, SessionStatus sessionStatus, Pager<Admin> pager) {
         LOGGER.info("accessing the admin list page");
+        sessionStatus.setComplete();
 
         try {
             long totalCount = adminService.queryCount(pager);
@@ -134,10 +135,9 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Admin admin) {
+    public String update(RedirectAttributes redirectAttributes, Admin admin) {
         try {
             adminService.update(admin);
-            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/admin/list";
         } catch (Exception e) {

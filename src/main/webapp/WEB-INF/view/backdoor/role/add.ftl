@@ -47,12 +47,93 @@
 			<tr>
 				<th>权限描述:</th>
 				<td>
-					<input type="text" name="description" class="text" maxlength="255" />
+					<input type="text" name="description" class="text" maxlength="64" />
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					&nbsp;
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">歌手</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="artist" name="authorities" value="ROLE_ARTIST" />歌手管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet artist">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ARTIST_ADD" />添加歌手
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ARTIST_EDIT" />编辑歌手
+						</label>
+					</span>
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">专辑</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="album" name="authorities" value="ROLE_ALBUM" />专辑管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet album">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_ADD" />添加专辑
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_EDIT" />编辑专辑
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_DELETE" />删除专辑
+						</label>
+					</span>
+				</td>
+			</tr>
+	        <tr class="authorities">
+				<th>
+					<a href="javascript:;" class="selectAll" title="全选此组权限">歌曲</a>
+				</th>
+				<td>
+					<span class="fieldSet">
+						<label>
+							<input type="checkbox" id="music" name="authorities" value="ROLE_MUSIC" />歌曲管理
+						</label>
+					</span>
+				</td>
+			</tr>
+			<tr class="authorities">
+				<th>&nbsp;</th>
+				<td>
+					<span class="fieldSet music">
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_ADD" />添加歌曲
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_EDIT" />编辑歌曲
+						</label>
+						<label>
+							<input type="checkbox" name="authorities" value="ROLE_MUSIC_DELETE" />删除歌曲
+						</label>
+					</span>
 				</td>
 			</tr>
 	        <tr class="authorities">
@@ -195,7 +276,7 @@
 						maxlength:64
 					},
 					description: {
-						maxlength:255
+						maxlength:64
 					}
 				},
 				messages: {

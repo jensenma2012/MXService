@@ -7,7 +7,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.response.WeChatResponse;
@@ -15,7 +15,7 @@ import com.xiaoma.service.ConfigService;
 import com.xiaoma.util.JsonUtil;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
-@Service
+@Component
 public class TulingHandler implements WeChatHandler {
 
     @Resource

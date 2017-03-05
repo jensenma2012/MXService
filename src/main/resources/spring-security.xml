@@ -21,6 +21,23 @@
 			default-target-url="/backdoor/main" always-use-default-target="true" />
 		<security:logout invalidate-session="true" logout-success-url="/backdoor" logout-url="/backdoor/logout" />
 
+		<security:intercept-url pattern="/backdoor/artist/list" access="hasRole('ROLE_ARTIST')" />
+		<security:intercept-url pattern="/backdoor/artist/add" access="hasRole('ROLE_ARTIST_ADD')" />
+		<security:intercept-url pattern="/backdoor/artist/save" access="hasRole('ROLE_ARTIST_ADD')" />
+		<security:intercept-url pattern="/backdoor/artist/edit" access="hasRole('ROLE_ARTIST_EDIT')" />
+		<security:intercept-url pattern="/backdoor/artist/update" access="hasRole('ROLE_ARTIST_EDIT')" />
+		<security:intercept-url pattern="/backdoor/album/list" access="hasRole('ROLE_ALBUM')" />
+		<security:intercept-url pattern="/backdoor/album/add" access="hasRole('ROLE_ALBUM_ADD')" />
+		<security:intercept-url pattern="/backdoor/album/save" access="hasRole('ROLE_ALBUM_ADD')" />
+		<security:intercept-url pattern="/backdoor/album/edit" access="hasRole('ROLE_ALBUM_EDIT')" />
+		<security:intercept-url pattern="/backdoor/album/update" access="hasRole('ROLE_ALBUM_EDIT')" />
+		<security:intercept-url pattern="/backdoor/album/delete" access="hasRole('ROLE_ALBUM_DELETE')" />
+		<security:intercept-url pattern="/backdoor/music/list" access="hasRole('ROLE_MUSIC')" />
+		<security:intercept-url pattern="/backdoor/music/add" access="hasRole('ROLE_MUSIC_ADD')" />
+		<security:intercept-url pattern="/backdoor/music/save" access="hasRole('ROLE_MUSIC_ADD')" />
+		<security:intercept-url pattern="/backdoor/music/edit" access="hasRole('ROLE_MUSIC_EDIT')" />
+		<security:intercept-url pattern="/backdoor/music/update" access="hasRole('ROLE_MUSIC_EDIT')" />
+		<security:intercept-url pattern="/backdoor/music/delete" access="hasRole('ROLE_MUSIC_DELETE')" />
 		<security:intercept-url pattern="/backdoor/admin/list" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/backdoor/admin/add" access="hasRole('ROLE_ADMIN_ADD')" />
 		<security:intercept-url pattern="/backdoor/admin/save" access="hasRole('ROLE_ADMIN_ADD')" />
@@ -38,11 +55,6 @@
 		<security:intercept-url pattern="/backdoor/config/update" access="hasRole('ROLE_CONFIG_EDIT')" />
 		<security:intercept-url pattern="/backdoor/config/refresh" access="hasRole('ROLE_CONFIG_REFRESH')" />
 		<security:intercept-url pattern="/backdoor/config/delete" access="hasRole('ROLE_CONFIG_DELETE')" />
-		<security:intercept-url pattern="/backdoor/artist/list" access="hasRole('ROLE_ARTIST')" />
-		<security:intercept-url pattern="/backdoor/artist/add" access="hasRole('ROLE_ARTIST_ADD')" />
-		<security:intercept-url pattern="/backdoor/artist/save" access="hasRole('ROLE_ARTIST_ADD')" />
-		<security:intercept-url pattern="/backdoor/artist/edit" access="hasRole('ROLE_ARTIST_EDIT')" />
-		<security:intercept-url pattern="/backdoor/artist/update" access="hasRole('ROLE_ARTIST_EDIT')" />
 		<security:intercept-url pattern="/backdoor/**" access="hasRole('ROLE_BASE')" />
 	</security:http>
 

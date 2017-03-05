@@ -30,8 +30,9 @@ public class ArtistController extends BaseController {
     private ArtistService artistService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(ModelMap model, Pager<Artist> pager) {
+    public String list(ModelMap model, SessionStatus sessionStatus, Pager<Artist> pager) {
         LOGGER.info("accessing the artist list page");
+        sessionStatus.setComplete();
 
         try {
             long totalCount = artistService.queryCount(pager);
@@ -85,10 +86,9 @@ public class ArtistController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Artist artist) {
+    public String update(RedirectAttributes redirectAttributes, Artist artist) {
         try {
             artistService.update(artist);
-            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/artist/list";
         } catch (Exception e) {

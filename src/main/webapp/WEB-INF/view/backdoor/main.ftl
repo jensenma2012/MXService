@@ -65,12 +65,22 @@
 	    <tr>
 	        <td id="menu" class="menu">
 	        	<dl id="resource">
-	        		[@security.authorize access="hasAnyRole('ROLE_ARTIST')"]
+	        		[@security.authorize access="hasAnyRole('ROLE_ARTIST','ROLE_ALBUM','ROLE_MUSIC')"]
 						<dt>资源管理</dt>
 				    [/@security.authorize]
 					[@security.authorize access="hasRole('ROLE_ARTIST')"]
 						<dd>
 							<a href="artist/list" target="iframe">歌手管理</a>
+					    </dd>
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_ALBUM')"]
+						<dd>
+							<a href="album/list" target="iframe">专辑管理</a>
+					    </dd>
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_MUSIC')"]
+						<dd>
+							<a href="music/list" target="iframe">歌曲管理</a>
 					    </dd>
 				    [/@security.authorize]
 				</dl>

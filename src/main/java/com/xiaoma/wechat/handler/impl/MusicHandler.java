@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.pojo.Album;
@@ -13,11 +13,11 @@ import com.xiaoma.entity.pojo.Artist;
 import com.xiaoma.entity.pojo.Music;
 import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.entity.shared.MusicLibrary;
+import com.xiaoma.service.AlbumService;
 import com.xiaoma.service.ConfigService;
-import com.xiaoma.service.MusicService;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
-@Service
+@Component
 public class MusicHandler implements WeChatHandler {
 
     private Map<String, Object> userMap = new HashMap<String, Object>();
@@ -26,11 +26,11 @@ public class MusicHandler implements WeChatHandler {
     private ConfigService configService;
 
     @Resource
-    private MusicService musicService;
+    private AlbumService albumService;
 
     @Override
     public WeChatResponse getWelcomeMessage(String toUserName, String fromUserName) {
-        MusicLibrary library = new MusicLibrary(musicService.getArtists());
+        MusicLibrary library = new MusicLibrary(albumService.getArtists());
         userMap.put(toUserName, library);
 
         WeChatResponse response = new WeChatResponse();

@@ -31,8 +31,9 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(ModelMap model, Pager<Role> pager) {
+    public String list(ModelMap model, SessionStatus sessionStatus, Pager<Role> pager) {
         LOGGER.info("accessing the role list page");
+        sessionStatus.setComplete();
 
         try {
             long totalCount = roleService.queryCount(pager);
@@ -87,11 +88,10 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(RedirectAttributes redirectAttributes, SessionStatus sessionStatus, Role role, String[] authorities) {
+    public String update(RedirectAttributes redirectAttributes, Role role, String[] authorities) {
         try {
             role.setAuthorities(Arrays.asList(authorities));
             roleService.update(role);
-            sessionStatus.setComplete();
             redirectAttributes.addFlashAttribute("message", "修改成功！");
             return "redirect:/backdoor/role/list";
         } catch (Exception e) {

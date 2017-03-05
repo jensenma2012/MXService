@@ -2,14 +2,14 @@ package com.xiaoma.wechat.handler.impl;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.xiaoma.entity.enums.WeChatResponseType;
 import com.xiaoma.entity.response.WeChatResponse;
 import com.xiaoma.service.ConfigService;
 import com.xiaoma.wechat.handler.WeChatHandler;
 
-@Service
+@Component
 public class EchoHandler implements WeChatHandler {
 
     @Resource

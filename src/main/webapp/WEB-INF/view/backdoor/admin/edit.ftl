@@ -22,13 +22,13 @@
 	<form id="inputForm" action="update" method="post">
 		<table class="input">
 			<tr>
-				<th>用户名:
+				<th>用户名:</th>
 				<td>
 					${admin.username}
 				</td>
 			</tr>
 			<tr>
-				<th><span class="requiredField">*</span>权限</th>
+				<th><span class="requiredField">*</span>权限:</th>
 				<td>
 					<select name="role.id" class="select">
 						<option value="">--请选择--</option>
