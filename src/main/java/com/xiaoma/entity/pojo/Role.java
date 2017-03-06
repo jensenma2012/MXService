@@ -19,7 +19,7 @@ public class Role extends BasePojo {
     @Column(name = "name", nullable = false, length = 64)
     private String name;
 
-    @Column(name = "authority_list", nullable = false, length = 255)
+    @Column(name = "authority_list", nullable = false, length = 1024)
     private String authorityList;
 
     @FieldDesc(name = "description", desc = "权限描述")

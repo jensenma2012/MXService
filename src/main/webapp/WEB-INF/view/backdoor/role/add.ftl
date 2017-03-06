@@ -103,6 +103,9 @@
 							<input type="checkbox" name="authorities" value="ROLE_ALBUM_EDIT" />编辑专辑
 						</label>
 						<label>
+							<input type="checkbox" name="authorities" value="ROLE_ALBUM_REFRESH" />同步服务器专辑
+						</label>
+						<label>
 							<input type="checkbox" name="authorities" value="ROLE_ALBUM_DELETE" />删除专辑
 						</label>
 					</span>

@@ -8,6 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,13 +50,7 @@ public class BackdoorController {
         } catch (Exception e) {
             LOGGER.error("error when creating a captcha", e);
         } finally {
-            if (servletOutputStream != null) {
-                try {
-                    servletOutputStream.close();
-                } catch (Exception e) {
-                    LOGGER.error("error when creating a captcha", e);
-                }
-            }
+            IOUtils.closeQuietly(servletOutputStream);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.xiaoma.controller.view.backdoor;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.xiaoma.entity.annotation.FieldDesc;
@@ -78,7 +81,18 @@ public class MusicController extends BaseController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(RedirectAttributes redirectAttributes, Music music) {
+    public String save(RedirectAttributes redirectAttributes, @RequestParam("file") CommonsMultipartFile file, Music music) {
+        try {
+            Album album = albumService.queryById(music.getAlbum().getId());
+            String filename = album.getArtist().getAlias() + "-" + album.getId() + "-" + System.currentTimeMillis() + ".mp3";
+            String filepath = configService.getValue("MUSIC_FOLDER") + filename;
+            File musicFile = new File(filepath);
+            file.transferTo(musicFile);
+            music.setFilename(filename);
+        } catch (Exception e) {
+            LOGGER.error("error when fetching album[id=" + music.getAlbum().getId() + "]", e);
+        }
+
         try {
             musicService.save(music);
             redirectAttributes.addFlashAttribute("message", "添加成功！");

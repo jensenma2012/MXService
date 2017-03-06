@@ -41,7 +41,7 @@ var messages = {
 	"validate.negative" : "只允许输入负数",
 	"validate.decimal" : "数值超出了允许范围",
 	"validate.pattern" : "格式错误",
-	"validate.extension" : "文件格式错误"
+	"validate.filetype" : "文件格式错误"
 };
 var str = "~`@!#$%^&*()_+-={}|[]\:;'<>?/.,";
 //限制输入特殊字符.只有在IE和chrome有效.

@@ -122,6 +122,15 @@ public class AlbumController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "/refresh", method = RequestMethod.POST)
+    public @ResponseBody HashMap<String, String> refresh() {
+        HashMap<String, String> message = new HashMap<String, String>();
+        albumService.refreshMusic();
+        message.put("type", "success");
+        message.put("content", "操作成功！");
+        return message;
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public @ResponseBody HashMap<String, String> delete(Long[] ids) {
         HashMap<String, String> message = new HashMap<String, String>();

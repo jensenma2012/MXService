@@ -40,6 +40,16 @@ public class AlbumServiceImpl extends BaseServiceImpl<Album> implements AlbumSer
         LOGGER.info("done loading music");
     }
 
+    @Override
+    public void refreshMusic() {
+        LOGGER.info("start refreshing music");
+
+        artists.clear();
+        loadMusic();
+
+        LOGGER.info("done refreshing music");
+    }
+
     private void loadMusic() {
         try {
             List<Album> albums = queryAll();

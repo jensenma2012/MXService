@@ -19,7 +19,7 @@
 
 <body>
 	<div class="path">添加歌曲</div>
-	<form id="inputForm" action="save" method="post">
+	<form id="inputForm" action="save" method="post" enctype="multipart/form-data">
 		<table class="input">
 			<tr>
 				<th><span class="requiredField">*</span>歌曲标题:</th>
@@ -82,7 +82,8 @@
 						maxlength:64
 					},
 					file: {
-						required:true
+						required:true,
+						filetype:["mp3"]
 					},
 					"album.id": {
 						required:true

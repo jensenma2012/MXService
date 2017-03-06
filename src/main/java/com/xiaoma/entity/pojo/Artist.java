@@ -21,6 +21,10 @@ public class Artist extends BasePojo {
     @Column(name = "name", nullable = false, length = 64)
     private String name;
 
+    @FieldDesc(name = "alias", desc = "别名")
+    @Column(name = "alias", nullable = false, length = 64)
+    private String alias;
+
     @FieldDesc(name = "description", desc = "歌手描述")
     @Column(name = "description", length = 255)
     private String description;
@@ -37,6 +41,14 @@ public class Artist extends BasePojo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public String getDescription() {

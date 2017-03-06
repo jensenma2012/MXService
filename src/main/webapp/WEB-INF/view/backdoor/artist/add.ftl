@@ -28,6 +28,12 @@
 				</td>
 			</tr>
 			<tr>
+				<th><span class="requiredField">*</span>别名:</th>
+				<td>
+					<input type="text" name="alias" class="text" maxlength="64" />
+				</td>
+			</tr>
+			<tr>
 				<th>歌手描述:</th>
 				<td>
 					<textarea name="description" class="textarea" maxlength="255"></textarea>
@@ -57,6 +63,10 @@
 			$inputForm.validate({
 				rules: {
 					name: {
+						required:true,
+						maxlength:64
+					},
+					alias: {
 						required:true,
 						maxlength:64
 					},

@@ -31,6 +31,7 @@
 		<security:intercept-url pattern="/backdoor/album/save" access="hasRole('ROLE_ALBUM_ADD')" />
 		<security:intercept-url pattern="/backdoor/album/edit" access="hasRole('ROLE_ALBUM_EDIT')" />
 		<security:intercept-url pattern="/backdoor/album/update" access="hasRole('ROLE_ALBUM_EDIT')" />
+		<security:intercept-url pattern="/backdoor/album/refresh" access="hasRole('ROLE_ALBUM_REFRESH')" />
 		<security:intercept-url pattern="/backdoor/album/delete" access="hasRole('ROLE_ALBUM_DELETE')" />
 		<security:intercept-url pattern="/backdoor/music/list" access="hasRole('ROLE_MUSIC')" />
 		<security:intercept-url pattern="/backdoor/music/add" access="hasRole('ROLE_MUSIC_ADD')" />

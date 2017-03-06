@@ -67,6 +67,9 @@
 					<a href="javascript:" class="sort" name="name">歌手名</a>
 				</th>
 				<th>
+					<a href="javascript:" class="sort" name="alias">别名</a>
+				</th>
+				<th>
 					<a href="javascript:" class="sort" name="description">歌手描述</a>
 				</th>
 				<th>
@@ -85,6 +88,9 @@
 					</td>
 					<td>
 						${list.name}
+					</td>
+					<td>
+						${list.alias}
 					</td>
 					<td>
 						${list.description}

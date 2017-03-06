@@ -43,7 +43,7 @@ $().ready(function() {
 				negative : message("validate.negative"),
 				decimal : message("validate.decimal"),
 				pattern : message("validate.pattern"),
-				extension : message("validate.extension")
+				filetype : message("validate.filetype")
 			});
 
 			$.validator.setDefaults({
