@@ -10,6 +10,10 @@
 	save
 [/@override]
 
+[@override name="enctype"]
+	enctype="multipart/form-data"
+[/@override]
+
 [@override name="form"]
 	<tr>
 		<th><span class="requiredField">*</span>歌曲标题:</th>
