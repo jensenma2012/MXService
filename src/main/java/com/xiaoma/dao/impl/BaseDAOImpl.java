@@ -1,8 +1,6 @@
 package com.xiaoma.dao.impl;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +12,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import com.xiaoma.dao.BaseDAO;
-import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.BasePojo;
 import com.xiaoma.entity.shared.Pager;
 
-public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
+public abstract class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
 
     @Resource
     private SessionFactory sessionFactory;
@@ -40,14 +37,14 @@ public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
 
     @Override
     public void delete(Long[] ids) throws Exception {
-        String hql = "delete from " + getGenericType().getName() + " where id in (:ids)";
+        String hql = "delete from " + getPojoClass().getName() + " where id in (:ids)";
         getCurrentSession().createQuery(hql).setParameterList("ids", ids).executeUpdate();
     }
 
     @Override
     public List<T> queryAll() throws Exception {
-        String hql = "from " + getGenericType().getName();
-        return getCurrentSession().createQuery(hql, getGenericType()).list();
+        String hql = "from " + getPojoClass().getName();
+        return getCurrentSession().createQuery(hql, getPojoClass()).list();
     }
 
     @Override
@@ -55,7 +52,7 @@ public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
         String fieldName = pager.getFieldName();
         String fieldValue = pager.getFieldValue();
 
-        String hql = "select count(*) from " + getGenericType().getName();
+        String hql = "select count(*) from " + getPojoClass().getName();
         if (StringUtils.isNotBlank(fieldName) && StringUtils.isNotBlank(fieldValue)) {
             hql += " where " + fieldName + " like :fieldValue";
         }
@@ -77,7 +74,7 @@ public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
         int startIndex = pager.getStartIndex();
         int pageSize = pager.getPageSize();
 
-        String hql = "from " + getGenericType().getName();
+        String hql = "from " + getPojoClass().getName();
         if (StringUtils.isNotBlank(fieldName) && StringUtils.isNotBlank(fieldValue)) {
             hql += " where " + fieldName + " like :fieldValue";
         }
@@ -85,7 +82,7 @@ public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
             hql += " order by " + orderProperty + " " + orderDirection;
         }
 
-        Query<T> query = getCurrentSession().createQuery(hql, getGenericType());
+        Query<T> query = getCurrentSession().createQuery(hql, getPojoClass());
         if (StringUtils.isNotBlank(fieldName) && StringUtils.isNotBlank(fieldValue)) {
             query = query.setParameter("fieldValue", '%' + fieldValue + '%');
         }
@@ -95,23 +92,12 @@ public class BaseDAOImpl<T extends BasePojo> implements BaseDAO<T> {
 
     @Override
     public T queryById(Long id) throws Exception {
-        return getCurrentSession().get(getGenericType(), id);
-    }
-
-    @Override
-    public List<FieldDesc> getSearchFields() {
-        List<FieldDesc> fields = new ArrayList<FieldDesc>();
-        for (Field field : getGenericType().getDeclaredFields()) {
-            FieldDesc fieldDesc = field.getAnnotation(FieldDesc.class);
-            if (fieldDesc != null) {
-                fields.add(fieldDesc);
-            }
-        }
-        return fields;
+        return getCurrentSession().get(getPojoClass(), id);
     }
 
     @SuppressWarnings("unchecked")
-    private Class<T> getGenericType() {
+    @Override
+    public Class<T> getPojoClass() {
         ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
         return (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }

@@ -1,5 +1,6 @@
 package com.xiaoma.entity.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BasePojo {
+public abstract class BasePojo implements Serializable {
+
+    private static final long serialVersionUID = 8684126662832252311L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -18,6 +18,8 @@ import com.xiaoma.entity.annotation.FieldDesc;
 @Table(name = "album")
 public class Album extends BasePojo {
 
+    private static final long serialVersionUID = -3154632666527490674L;
+
     @FieldDesc(name = "title", desc = "专辑标题")
     @Column(name = "title", nullable = false, length = 64)
     private String title;

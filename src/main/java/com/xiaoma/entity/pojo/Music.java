@@ -12,6 +12,8 @@ import com.xiaoma.entity.annotation.FieldDesc;
 @Table(name = "music")
 public class Music extends BasePojo {
 
+    private static final long serialVersionUID = -3233080830772749186L;
+
     @FieldDesc(name = "title", desc = "歌曲标题")
     @Column(name = "title", nullable = false, length = 64)
     private String title;

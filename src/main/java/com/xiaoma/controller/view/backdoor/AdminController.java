@@ -14,41 +14,44 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.Admin;
 import com.xiaoma.entity.pojo.Role;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.AdminService;
+import com.xiaoma.service.BaseService;
 import com.xiaoma.service.RoleService;
 
 @Controller
 @SessionAttributes("admin")
-@RequestMapping("/backdoor/admin/")
-public class AdminController extends BaseController {
+@RequestMapping("/backdoor/admin")
+public class AdminController extends BaseController<Admin> {
 
     private static final Logger LOGGER = LogManager.getLogger(AdminController.class);
 
     @Resource
-    private AdminService adminService;
+    private RoleService roleService;
 
     @Resource
-    private RoleService roleService;
+    @Override
+    public void setService(BaseService<Admin> service) {
+        super.setService(service);
+    }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
     public String modify(ModelMap model) {
         LOGGER.info("accessing the admin modify page");
-        Admin currentUser = adminService.getCurrentUser();
+        Admin currentUser = ((AdminService) super.getService()).getCurrentUser();
         model.addAttribute("username", currentUser.getUsername());
         return "/backdoor/admin/modify";
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public String resetPassword(ModelMap model, RedirectAttributes redirectAttributes, String password, String newPassword) {
-        boolean isPasswordValid = adminService.validatePassword(password);
+        boolean isPasswordValid = ((AdminService) super.getService()).validatePassword(password);
         String message = "更新成功！";
         try {
             if (isPasswordValid) {
-                adminService.resetPassword(newPassword);
+                ((AdminService) super.getService()).resetPassword(newPassword);
             } else {
                 message = "密码输入错误！";
             }
@@ -63,30 +66,12 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(ModelMap model, SessionStatus sessionStatus, Pager<Admin> pager) {
-        LOGGER.info("accessing the admin list page");
         sessionStatus.setComplete();
-
-        try {
-            long totalCount = adminService.queryCount(pager);
-            List<Admin> admins = adminService.queryList(pager);
-            List<FieldDesc> searchFields = adminService.getSearchFields();
-
-            pager.setTotalCount(totalCount);
-            pager.setResult(admins);
-            pager.setSearchFields(searchFields);
-            model.addAttribute("page", pager);
-        } catch (Exception e) {
-            LOGGER.error("error when fetching admin list", e);
-            model.addAttribute("message", "获取失败！");
-        }
-
-        return "/backdoor/admin/list";
+        return super.list(model, pager);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap model) {
-        LOGGER.info("accessing the admin add page");
-
         try {
             List<Role> roles = roleService.queryAll();
             model.addAttribute("roles", roles);
@@ -95,34 +80,16 @@ public class AdminController extends BaseController {
             model.addAttribute("message", "获取失败！");
         }
 
-        return "/backdoor/admin/add";
+        return super.add();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(RedirectAttributes redirectAttributes, Admin admin) {
-        try {
-            adminService.save(admin);
-            redirectAttributes.addFlashAttribute("message", "添加成功！");
-            return "redirect:/backdoor/admin/list";
-        } catch (Exception e) {
-            LOGGER.error("error when adding a new admin", e);
-            redirectAttributes.addFlashAttribute("message", "添加失败！");
-            return "redirect:/backdoor/admin/add";
-        }
+        return super.save(redirectAttributes, admin);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(ModelMap model, Long id) {
-        LOGGER.info("accessing the admin edit page");
-
-        try {
-            Admin admin = adminService.queryById(id);
-            model.addAttribute("admin", admin);
-        } catch (Exception e) {
-            LOGGER.error("error when fetching admin[id=" + id + "]", e);
-            model.addAttribute("message", "获取失败！");
-        }
-
         try {
             List<Role> roles = roleService.queryAll();
             model.addAttribute("roles", roles);
@@ -131,20 +98,12 @@ public class AdminController extends BaseController {
             model.addAttribute("message", "获取失败！");
         }
 
-        return "/backdoor/admin/edit";
+        return super.edit(model, id);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(RedirectAttributes redirectAttributes, Admin admin) {
-        try {
-            adminService.update(admin);
-            redirectAttributes.addFlashAttribute("message", "修改成功！");
-            return "redirect:/backdoor/admin/list";
-        } catch (Exception e) {
-            LOGGER.error("error when updating admin[id=" + admin.getId() + "]", e);
-            redirectAttributes.addFlashAttribute("message", "修改失败！");
-            return "redirect:/backdoor/admin/edit?id=" + admin.getId();
-        }
+        return super.update(redirectAttributes, admin);
     }
 
 }

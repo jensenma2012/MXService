@@ -33,7 +33,7 @@ public class Pager<T> {
 
     private String orderDirection;// 排序方式
 
-    private List<T> result = new ArrayList<T>();
+    private List<T> results = new ArrayList<T>();
 
     public int getPageNumber() {
         return pageNumber;
@@ -113,12 +113,12 @@ public class Pager<T> {
         this.fieldValue = fieldValue;
     }
 
-    public List<T> getResult() {
-        return result;
+    public List<T> getResults() {
+        return results;
     }
 
-    public void setResult(List<T> result) {
-        this.result = result;
+    public void setResults(List<T> results) {
+        this.results = results;
     }
 
     public String getOrderProperty() {

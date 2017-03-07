@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.xiaoma.service.impl.CaptchaServiceImpl;
 
 @Controller
-@RequestMapping("/backdoor/")
+@RequestMapping("/backdoor")
 public class BackdoorController {
 
     private static final Logger LOGGER = LogManager.getLogger(BackdoorController.class);

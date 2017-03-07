@@ -3,12 +3,11 @@ package com.xiaoma.service.impl;
 import java.util.List;
 
 import com.xiaoma.dao.BaseDAO;
-import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.BasePojo;
 import com.xiaoma.entity.shared.Pager;
 import com.xiaoma.service.BaseService;
 
-public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
 
     private BaseDAO<T> dao;
 
@@ -56,8 +55,8 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
     }
 
     @Override
-    public List<FieldDesc> getSearchFields() {
-        return dao.getSearchFields();
+    public Class<T> getPojoClass() {
+        return dao.getPojoClass();
     }
 
 }

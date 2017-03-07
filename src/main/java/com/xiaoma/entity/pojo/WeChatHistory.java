@@ -12,6 +12,8 @@ import com.xiaoma.entity.annotation.FieldDesc;
 @Table(name = "wechat_history")
 public class WeChatHistory extends BasePojo {
 
+    private static final long serialVersionUID = 2897899498166260117L;
+
     @FieldDesc(name = "type", desc = "消息类型")
     @Column(name = "type", nullable = false, length = 64)
     private String type;

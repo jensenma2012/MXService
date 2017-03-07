@@ -10,6 +10,8 @@ import com.xiaoma.entity.annotation.FieldDesc;
 @Table(name = "wechat_user")
 public class WeChatUser extends BasePojo {
 
+    private static final long serialVersionUID = -2321310702638991719L;
+
     @FieldDesc(name = "username", desc = "微信id")
     @Column(name = "username", nullable = false, length = 64)
     private String username;

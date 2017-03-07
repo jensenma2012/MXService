@@ -10,6 +10,8 @@ import com.xiaoma.entity.annotation.FieldDesc;
 @Table(name = "config")
 public class Config extends BasePojo {
 
+    private static final long serialVersionUID = 3448922968314248402L;
+
     @FieldDesc(name = "key", desc = "配置key")
     @Column(name = "[key]", nullable = false, length = 64)
     private String key;

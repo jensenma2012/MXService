@@ -15,6 +15,8 @@ import com.xiaoma.util.JsonUtil;
 @Table(name = "role")
 public class Role extends BasePojo {
 
+    private static final long serialVersionUID = 5959863074302040444L;
+
     @FieldDesc(name = "name", desc = "权限名")
     @Column(name = "name", nullable = false, length = 64)
     private String name;

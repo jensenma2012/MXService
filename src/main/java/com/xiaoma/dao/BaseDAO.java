@@ -2,7 +2,6 @@ package com.xiaoma.dao;
 
 import java.util.List;
 
-import com.xiaoma.entity.annotation.FieldDesc;
 import com.xiaoma.entity.pojo.BasePojo;
 import com.xiaoma.entity.shared.Pager;
 
@@ -22,6 +21,6 @@ public interface BaseDAO<T extends BasePojo> {
 
     public T queryById(Long id) throws Exception;
 
-    public List<FieldDesc> getSearchFields();
+    public Class<T> getPojoClass();
 
 }

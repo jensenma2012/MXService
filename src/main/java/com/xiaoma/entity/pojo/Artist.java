@@ -17,6 +17,8 @@ import com.xiaoma.entity.shared.MusicLibrary;
 @Table(name = "artist")
 public class Artist extends BasePojo {
 
+    private static final long serialVersionUID = -8854981362738481035L;
+
     @FieldDesc(name = "name", desc = "歌手名")
     @Column(name = "name", nullable = false, length = 64)
     private String name;

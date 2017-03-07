@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.xiaoma.captcha.BadCaptchaException;
 
 @Controller
-@RequestMapping("/")
 public class MainController {
 
     private static final Logger LOGGER = LogManager.getLogger(MainController.class);

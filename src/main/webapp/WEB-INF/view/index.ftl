@@ -64,4 +64,4 @@
 	</section>
 [/@override]
 
-[@extends name="base.ftl"/]
+[@extends name="base.ftl" /]

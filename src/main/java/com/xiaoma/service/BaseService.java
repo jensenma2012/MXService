@@ -2,10 +2,10 @@ package com.xiaoma.service;
 
 import java.util.List;
 
-import com.xiaoma.entity.annotation.FieldDesc;
+import com.xiaoma.entity.pojo.BasePojo;
 import com.xiaoma.entity.shared.Pager;
 
-public interface BaseService<T> {
+public interface BaseService<T extends BasePojo> {
 
     public void save(T t) throws Exception;
 
@@ -21,6 +21,6 @@ public interface BaseService<T> {
 
     public T queryById(Long id) throws Exception;
 
-    public List<FieldDesc> getSearchFields();
+    public Class<T> getPojoClass();
 
 }
