@@ -13,9 +13,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 	<!-- Font Awesome -->
-	<link type="text/css" media="all" href="${base}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link type="text/css" media="all" href="${base}/webjars/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 	<!-- Bootstrap -->
-	<link type="text/css" media="all" href="${base}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link type="text/css" media="all" href="${base}/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 	<!-- Animate CSS -->
 	<link type="text/css" media="all" href="${base}/resources/css/animate.css" rel="stylesheet" />
 	<!-- Template CSS -->
@@ -110,8 +110,8 @@
 	<!-- End Scroll to Top -->
 
 	<!-- Scripts -->
-	<script src="${base}/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="${base}/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${base}/webjars/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+	<script src="${base}/webjars/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/jquery.appear.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/jquery.mixitup.min.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/jquery.flexslider-min.js" type="text/javascript"></script>

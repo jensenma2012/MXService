@@ -32,6 +32,9 @@
 		<gson.version>2.8.0</gson.version>
 		<log4j.version>2.8</log4j.version>
 		<servlet.version>3.1.0</servlet.version>
+		<jquery.version>3.1.1</jquery.version>
+		<bootstrap.version>3.3.7</bootstrap.version>
+		<font-awesome.version>4.7.0</font-awesome.version>
 		<junit.version>4.12</junit.version>
 		<!-- End version properties -->
 	</properties>
@@ -221,6 +224,26 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- End servlet dependencies -->
+
+		<!-- Web resources dependencies -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${font-awesome.version}</version>
+		</dependency>
+		<!-- End web resources dependencies -->
 
 		<!-- Test dependencies -->
 		<dependency>

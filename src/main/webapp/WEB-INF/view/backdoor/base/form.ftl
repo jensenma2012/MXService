@@ -41,7 +41,7 @@
 	</form>
 
 	<!-- Scripts -->
-	<script src="${base}/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="${base}/webjars/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/common.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/jquery.validate.min.js" type="text/javascript"></script>
 	<script src="${base}/resources/js/input.js" type="text/javascript"></script>
