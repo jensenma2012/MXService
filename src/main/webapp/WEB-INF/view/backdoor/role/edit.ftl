@@ -131,6 +131,31 @@
 			</span>
 		</td>
 	</tr>
+    <tr class="authorities">
+		<th>
+			<a href="javascript:;" class="selectAll" title="全选此组权限">微信</a>
+		</th>
+		<td>
+			<span class="fieldSet">
+				<label>
+					<input type="checkbox" id="wechat" name="authorities" value="ROLE_WECHATUSER" [#if role.authorityList?contains("ROLE_WECHATUSER")]checked[/#if] />用户管理
+				</label>
+			</span>
+		</td>
+	</tr>
+	<tr class="authorities">
+		<th>&nbsp;</th>
+		<td>
+			<span class="fieldSet wechat">
+				<label>
+					<input type="checkbox" name="authorities" value="ROLE_WECHATUSER_EDIT" [#if role.authorityList?contains("ROLE_WECHATUSER_EDIT")]checked[/#if] />编辑用户
+				</label>
+				<label>
+					<input type="checkbox" name="authorities" value="ROLE_WECHATHISTORY" [#if role.authorityList?contains("ROLE_WECHATHISTORY")]checked[/#if] />消息管理
+				</label>
+			</span>
+		</td>
+	</tr>
 	<tr class="authorities">
 		<th>
 			<a href="javascript:;" class="selectAll" title="全选此组权限">管理员</a>

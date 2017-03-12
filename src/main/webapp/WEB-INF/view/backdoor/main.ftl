@@ -49,6 +49,13 @@
 	            </div>
 	            <div id="nav" class="nav">
 	                <ul>
+		                [@security.authorize access="hasAnyRole('ROLE_WECHATUSER','ROLE_WECHATHISTORY')"]
+							<li><a href="#wechat">微信</a></li>
+						[/@security.authorize]
+	                </ul>
+	            </div>
+	            <div id="nav" class="nav">
+	                <ul>
 		                [@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_ROLE','ROLE_CONFIG')"]
 							<li><a href="#system">系统</a></li>
 						[/@security.authorize]
@@ -81,6 +88,21 @@
 					[@security.authorize access="hasRole('ROLE_MUSIC')"]
 						<dd>
 							<a href="music/list" target="iframe">歌曲管理</a>
+					    </dd>
+				    [/@security.authorize]
+				</dl>
+	        	<dl id="wechat">
+	        		[@security.authorize access="hasAnyRole('ROLE_WECHATUSER','ROLE_WECHATHISTORY')"]
+						<dt>微信管理</dt>
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_WECHATUSER')"]
+						<dd>
+							<a href="wechatuser/list" target="iframe">用户管理</a>
+					    </dd>
+				    [/@security.authorize]
+					[@security.authorize access="hasRole('ROLE_WECHATHISTORY')"]
+						<dd>
+							<a href="wechathistory/list" target="iframe">消息管理</a>
 					    </dd>
 				    [/@security.authorize]
 				</dl>

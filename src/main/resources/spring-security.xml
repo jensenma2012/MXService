@@ -39,6 +39,10 @@
 		<security:intercept-url pattern="/backdoor/music/update" access="hasRole('ROLE_MUSIC_EDIT')" />
 		<security:intercept-url pattern="/backdoor/music/refresh" access="hasRole('ROLE_MUSIC_REFRESH')" />
 		<security:intercept-url pattern="/backdoor/music/delete" access="hasRole('ROLE_MUSIC_DELETE')" />
+		<security:intercept-url pattern="/backdoor/wechatuser/list" access="hasRole('ROLE_WECHATUSER')" />
+		<security:intercept-url pattern="/backdoor/wechatuser/edit" access="hasRole('ROLE_WECHATUSER_EDIT')" />
+		<security:intercept-url pattern="/backdoor/wechatuser/update" access="hasRole('ROLE_WECHATUSER_EDIT')" />
+		<security:intercept-url pattern="/backdoor/wechathistory/list" access="hasRole('ROLE_WECHATHISTORY')" />
 		<security:intercept-url pattern="/backdoor/admin/list" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/backdoor/admin/add" access="hasRole('ROLE_ADMIN_ADD')" />
 		<security:intercept-url pattern="/backdoor/admin/save" access="hasRole('ROLE_ADMIN_ADD')" />

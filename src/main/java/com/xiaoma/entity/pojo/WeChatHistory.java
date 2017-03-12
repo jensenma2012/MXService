@@ -22,6 +22,7 @@ public class WeChatHistory extends BasePojo {
     @Column(name = "content", nullable = false, length = 255)
     private String content;
 
+    @FieldDesc(name = "wechatUser.alias", desc = "用户别名")
     @OneToOne
     @JoinColumn(name = "user_id")
     private WeChatUser wechatUser;

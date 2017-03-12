@@ -50,7 +50,7 @@ public class ConfigServiceImpl extends BaseServiceImpl<Config> implements Config
     private void loadConfigs() {
         try {
             for (Config config : queryAll()) {
-                configMap.put(config.getKey(), config.getValue());
+                configMap.put(config.getKey(), config.getValue().replace("\r\n", "\n"));
             }
             LOGGER.info("configs : " + configMap);
         } catch (Exception e) {

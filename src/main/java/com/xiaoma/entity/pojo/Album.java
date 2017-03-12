@@ -28,6 +28,7 @@ public class Album extends BasePojo {
     @Column(name = "description", length = 255)
     private String description;
 
+    @FieldDesc(name = "artist.name", desc = "歌手")
     @OneToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;

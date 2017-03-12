@@ -39,6 +39,7 @@ public class Admin extends BasePojo implements UserDetails {
     @Column(name = "is_credentials_non_expired", nullable = false)
     private boolean credentialsNonExpired;
 
+    @FieldDesc(name = "role.name", desc = "权限")
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;

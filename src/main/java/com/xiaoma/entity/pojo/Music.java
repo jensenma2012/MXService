@@ -25,6 +25,7 @@ public class Music extends BasePojo {
     @Column(name = "filename", nullable = false, length = 64)
     private String filename;
 
+    @FieldDesc(name = "album.title", desc = "专辑")
     @OneToOne
     @JoinColumn(name = "album_id")
     private Album album;
